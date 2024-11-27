@@ -1,0 +1,9 @@
+{
+	"name": "adf-abcretail",
+	"location": "canadacentral",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a64f555f-9594-49b8-9adb-b0fbd5e50756",
+		"tenantId": "df25728e-a83d-4656-85e7-f7ab9a394f94"
+	}
+}
