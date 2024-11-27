@@ -1,0 +1,66 @@
+{
+	"name": "ds_dlsa_abcretail_metadata_lookup_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dlsa_abcretail",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"storage_account": {
+					"value": "@dataset().lookup_storage_account",
+					"type": "Expression"
+				},
+				"client_id": {
+					"value": "@dataset().lookup_client_id",
+					"type": "Expression"
+				},
+				"directory_id": {
+					"value": "@dataset().lookup_directory_id",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"lookup_storage_account": {
+				"type": "string"
+			},
+			"lookup_client_id": {
+				"type": "string"
+			},
+			"lookup_directory_id": {
+				"type": "string"
+			},
+			"lookup_container": {
+				"type": "string"
+			},
+			"lookup_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().lookup_filename)",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().lookup_container",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"source": {
+					"type": "string"
+				},
+				"filename": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

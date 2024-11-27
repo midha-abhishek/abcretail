@@ -1,0 +1,73 @@
+{
+	"name": "abc_retail_data_lake_house_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "lookup_datasets",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_dlsa_abcretail_metadata_lookup_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"lookup_storage_account": {
+								"value": "@pipeline().parameters.storage_account",
+								"type": "Expression"
+							},
+							"lookup_client_id": {
+								"value": "@pipeline().parameters.client_id",
+								"type": "Expression"
+							},
+							"lookup_directory_id": {
+								"value": "@pipeline().parameters.directory_id",
+								"type": "Expression"
+							},
+							"lookup_container": {
+								"value": "@pipeline().parameters.metada_container",
+								"type": "Expression"
+							}
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"storage_account": {
+				"type": "string"
+			},
+			"client_id": {
+				"type": "string"
+			},
+			"directory_id": {
+				"type": "string"
+			},
+			"metada_container": {
+				"type": "string"
+			},
+			"lookup_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
