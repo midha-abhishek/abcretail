@@ -173,6 +173,10 @@
 															"http_target_folder": {
 																"value": "@pipeline().parameters.http_folder",
 																"type": "Expression"
+															},
+															"http_target_filename": {
+																"value": "@activity('lookup_datasets').output.value.filename",
+																"type": "Expression"
 															}
 														}
 													}
