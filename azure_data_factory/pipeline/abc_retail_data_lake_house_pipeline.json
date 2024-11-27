@@ -391,6 +391,21 @@
 			},
 			"azsqldb_folder": {
 				"type": "string"
+			},
+			"onprem_sqlserver": {
+				"type": "string"
+			},
+			"onprem_sqldb": {
+				"type": "string"
+			},
+			"onprem_sqlserver_username": {
+				"type": "string"
+			},
+			"onprem_sqldb_schema": {
+				"type": "string"
+			},
+			"onpremsqldb_folder": {
+				"type": "string"
 			}
 		},
 		"annotations": []
