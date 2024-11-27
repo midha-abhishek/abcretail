@@ -1,0 +1,41 @@
+{
+	"name": "ls_onprem_sqlserver_abcretail",
+	"properties": {
+		"parameters": {
+			"onprem_sqlserver": {
+				"type": "string"
+			},
+			"onprem_sqldb": {
+				"type": "string"
+			},
+			"onprem_sqlserver_username": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "@{linkedService().onprem_sqlserver}",
+			"database": "@{linkedService().onprem_sqldb}",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "@{linkedService().onprem_sqlserver_username}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"key_vault": "kv-abcretail"
+					}
+				},
+				"secretName": "onprem-sqlserver-password"
+			}
+		},
+		"connectVia": {
+			"referenceName": "onprem-sqlserver-abcretail-integration-runtime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

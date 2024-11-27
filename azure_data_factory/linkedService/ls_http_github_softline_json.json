@@ -1,0 +1,26 @@
+{
+	"name": "ls_http_github_softline_json",
+	"properties": {
+		"parameters": {
+			"github_username": {
+				"type": "string"
+			},
+			"github_repository": {
+				"type": "string"
+			},
+			"github_branch": {
+				"type": "string"
+			},
+			"github_data_folder": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://raw.githubusercontent.com/@{linkedService().github_username}/@{linkedService().github_repository}/refs/heads/@{linkedService().github_branch}/@{linkedService().github_data_folder}/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
