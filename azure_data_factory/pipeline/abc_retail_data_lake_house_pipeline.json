@@ -288,7 +288,42 @@
 										]
 									},
 									{
-										"value": "onprem_sqlserver"
+										"value": "onprem_sqlserver",
+										"activities": [
+											{
+												"name": "onpremsqlserver_to_raw",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "SqlServerSource",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"enableStaging": false
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_onprem_sqlserver_abcretail",
+														"type": "DatasetReference",
+														"parameters": {
+															"onprem_sqldb_table_name": {
+																"value": "@activity('lookup_datasets').output.value.filename",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
 									}
 								],
 								"defaultActivities": [
