@@ -288,6 +288,10 @@
 															"azsqldb_filename": {
 																"value": "@activity('lookup_datasets').output.value.filename",
 																"type": "Expression"
+															},
+															"key_vault": {
+																"value": "@pipeline().parameters.key_vault",
+																"type": "Expression"
 															}
 														}
 													}
