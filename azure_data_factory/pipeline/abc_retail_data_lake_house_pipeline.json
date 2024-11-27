@@ -141,6 +141,10 @@
 															"softline_github_data_folder": {
 																"value": "@pipeline().parameters.github_softline_data_folder",
 																"type": "Expression"
+															},
+															"softline_github_filename": {
+																"value": "@activity('lookup_datasets').output.value.filename",
+																"type": "Expression"
 															}
 														}
 													}

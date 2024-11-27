@@ -35,6 +35,9 @@
 			},
 			"softline_github_data_folder": {
 				"type": "string"
+			},
+			"softline_github_filename": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -43,7 +46,7 @@
 			"location": {
 				"type": "HttpServerLocation",
 				"relativeUrl": {
-					"value": "concat(@item().filename, '.json')",
+					"value": "@concat(dataset().softline_github_filename, '.json')",
 					"type": "Expression"
 				}
 			}
