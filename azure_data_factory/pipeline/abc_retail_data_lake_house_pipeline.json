@@ -49,6 +49,10 @@
 							"lookup_filename": {
 								"value": "@pipeline().parameters.lookup_filename",
 								"type": "Expression"
+							},
+							"key_vault": {
+								"value": "@pipeline().parameters.key_vault",
+								"type": "Expression"
 							}
 						}
 					},
