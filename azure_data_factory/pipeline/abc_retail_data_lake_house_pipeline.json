@@ -202,7 +202,29 @@
 												"inputs": [
 													{
 														"referenceName": "ds_az_sqldb_abcretail",
-														"type": "DatasetReference"
+														"type": "DatasetReference",
+														"parameters": {
+															"az_sqlserver": {
+																"value": "@pipeline().parameters.az_sqlserver",
+																"type": "Expression"
+															},
+															"az_sqldb": {
+																"value": "@pipeline().parameters.az_sqldb",
+																"type": "Expression"
+															},
+															"az_sqlserver_username": {
+																"value": "@pipeline().parameters.az_sqlserver_username",
+																"type": "Expression"
+															},
+															"az_sqldb_schema": {
+																"value": "@pipeline().parameters.az_sqldb_schema",
+																"type": "Expression"
+															},
+															"az_sqldb_table_name": {
+																"value": "@activity('lookup_datasets').output.value.filename",
+																"type": "Expression"
+															}
+														}
 													}
 												]
 											}
@@ -261,6 +283,18 @@
 				"type": "string"
 			},
 			"http_folder": {
+				"type": "string"
+			},
+			"az_sqlserver": {
+				"type": "string"
+			},
+			"az_sqldb": {
+				"type": "string"
+			},
+			"az_sqlserver_username": {
+				"type": "string"
+			},
+			"az_sqldb_schema": {
 				"type": "string"
 			}
 		},
