@@ -1,0 +1,19 @@
+[
+  {
+    "source": "http",
+    "filename": "accessories"
+  },
+  {
+    "source": "http",
+    "filename": "clothing"
+  },
+  {
+    "source": "http",
+    "filename": "foodwear"
+  },
+  {
+    "source": "http",
+    "filename": "home_decor"
+  },
+  
+]
