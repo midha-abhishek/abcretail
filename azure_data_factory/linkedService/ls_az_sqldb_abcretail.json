@@ -1,0 +1,37 @@
+{
+	"name": "ls_az_sqldb_abcretail",
+	"properties": {
+		"parameters": {
+			"az_sqlserver": {
+				"type": "string"
+			},
+			"az_sqldb": {
+				"type": "string"
+			},
+			"az_sqlserver_username": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlDatabase",
+		"typeProperties": {
+			"server": "@{linkedService().az_sqlserver}.database.windows.net",
+			"database": "@{linkedService().az_sqldb}",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "@{linkedService().az_sqlserver_username}",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"key_vault": "kv-abcretail"
+					}
+				},
+				"secretName": "azure-sql-server-password"
+			}
+		}
+	}
+}
