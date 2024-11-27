@@ -16,6 +16,10 @@
 				"directory_id": {
 					"value": "@dataset().lookup_directory_id",
 					"type": "Expression"
+				},
+				"key_vault": {
+					"value": "@dataset().key_vault",
+					"type": "Expression"
 				}
 			}
 		},
@@ -33,6 +37,9 @@
 				"type": "string"
 			},
 			"lookup_filename": {
+				"type": "string"
+			},
+			"key_vault": {
 				"type": "string"
 			}
 		},

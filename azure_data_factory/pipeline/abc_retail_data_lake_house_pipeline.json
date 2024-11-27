@@ -471,6 +471,9 @@
 			},
 			"onpremsqldb_folder": {
 				"type": "string"
+			},
+			"key_vault": {
+				"type": "string"
 			}
 		},
 		"annotations": []
