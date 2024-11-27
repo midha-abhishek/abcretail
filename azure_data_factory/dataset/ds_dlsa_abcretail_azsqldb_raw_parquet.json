@@ -16,6 +16,10 @@
 				"directory_id": {
 					"value": "@dataset().azsqldb_directory_id",
 					"type": "Expression"
+				},
+				"key_vault": {
+					"value": "@dataset().key_vault",
+					"type": "Expression"
 				}
 			}
 		},
@@ -36,6 +40,9 @@
 				"type": "string"
 			},
 			"azsqldb_filename": {
+				"type": "string"
+			},
+			"key_vault": {
 				"type": "string"
 			}
 		},
