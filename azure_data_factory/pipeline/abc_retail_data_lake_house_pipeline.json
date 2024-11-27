@@ -66,7 +66,72 @@
 						]
 					}
 				],
-				"userProperties": []
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('lookup_datasets').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "switch_dataset_source_cases",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@item().source",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "http",
+										"activities": [
+											{
+												"name": "http_to_raw",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "JsonSource",
+														"storeSettings": {
+															"type": "HttpReadSettings",
+															"requestMethod": "GET"
+														},
+														"formatSettings": {
+															"type": "JsonReadSettings"
+														}
+													},
+													"enableStaging": false
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_http_github_softline_json",
+														"type": "DatasetReference"
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "az_sql_db"
+									},
+									{
+										"value": "onprem_sqlserver"
+									}
+								]
+							}
+						}
+					]
+				}
 			}
 		],
 		"parameters": {
@@ -83,6 +148,18 @@
 				"type": "string"
 			},
 			"lookup_filename": {
+				"type": "string"
+			},
+			"github_username": {
+				"type": "string"
+			},
+			"github_repository": {
+				"type": "string"
+			},
+			"github_branch": {
+				"type": "string"
+			},
+			"github_softline_data_folder": {
 				"type": "string"
 			}
 		},
