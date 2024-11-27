@@ -1,0 +1,6 @@
+{
+	"name": "onprem-sqlserver-abcretail-integration-runtime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
