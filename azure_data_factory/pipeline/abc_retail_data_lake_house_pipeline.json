@@ -51,8 +51,22 @@
 								"type": "Expression"
 							}
 						}
-					}
+					},
+					"firstRowOnly": false
 				}
+			},
+			{
+				"name": "for_each_dataset",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "lookup_datasets",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"parameters": {
