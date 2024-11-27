@@ -1,0 +1,114 @@
+{
+	"name": "ds_az_sqldb_abcretail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_az_sqldb_abcretail",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"az_sqlserver": {
+					"value": "@dataset().az_sqlserver",
+					"type": "Expression"
+				},
+				"az_sqldb": {
+					"value": "@dataset().az_sqldb",
+					"type": "Expression"
+				},
+				"az_sqlserver_username": {
+					"value": "@dataset().az_sqlserver_username",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"az_sqlserver": {
+				"type": "string"
+			},
+			"az_sqldb": {
+				"type": "string"
+			},
+			"az_sqlserver_username": {
+				"type": "string"
+			},
+			"az_sqldb_schema": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "NameStyle",
+				"type": "bit"
+			},
+			{
+				"name": "Title",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FirstName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "MiddleName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "LastName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Suffix",
+				"type": "nvarchar"
+			},
+			{
+				"name": "CompanyName",
+				"type": "nvarchar"
+			},
+			{
+				"name": "SalesPerson",
+				"type": "nvarchar"
+			},
+			{
+				"name": "EmailAddress",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "PasswordHash",
+				"type": "varchar"
+			},
+			{
+				"name": "PasswordSalt",
+				"type": "varchar"
+			},
+			{
+				"name": "rowguid",
+				"type": "uniqueidentifier"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().az_sqldb_schema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@item().filename",
+				"type": "Expression"
+			}
+		}
+	}
+}
