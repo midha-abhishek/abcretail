@@ -10,6 +10,9 @@
 			},
 			"directory_id": {
 				"type": "string"
+			},
+			"key_vault": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -25,7 +28,10 @@
 					"referenceName": "ls_kv_abcretail",
 					"type": "LinkedServiceReference",
 					"parameters": {
-						"key_vault": "kv-abcretail"
+						"key_vault": {
+							"value": "@linkedService().key_vault",
+							"type": "Expression"
+						}
 					}
 				},
 				"secretName": "client-secret"
