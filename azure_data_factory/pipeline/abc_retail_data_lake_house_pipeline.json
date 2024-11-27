@@ -94,7 +94,14 @@
 											{
 												"name": "http_to_raw",
 												"type": "Copy",
-												"dependsOn": [],
+												"dependsOn": [
+													{
+														"activity": "http_wait_30seconds",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
 												"policy": {
 													"timeout": "0.12:00:00",
 													"retry": 0,
@@ -189,6 +196,15 @@
 														}
 													}
 												]
+											},
+											{
+												"name": "http_wait_30seconds",
+												"type": "Wait",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"waitTimeInSeconds": 30
+												}
 											}
 										]
 									},
@@ -198,7 +214,14 @@
 											{
 												"name": "azsqldb_to_raw",
 												"type": "Copy",
-												"dependsOn": [],
+												"dependsOn": [
+													{
+														"activity": "azsqldb_wait_30seconds",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
 												"policy": {
 													"timeout": "0.12:00:00",
 													"retry": 0,
@@ -296,6 +319,15 @@
 														}
 													}
 												]
+											},
+											{
+												"name": "azsqldb_wait_30seconds",
+												"type": "Wait",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"waitTimeInSeconds": 30
+												}
 											}
 										]
 									},
@@ -305,7 +337,14 @@
 											{
 												"name": "onpremsqlserver_to_raw",
 												"type": "Copy",
-												"dependsOn": [],
+												"dependsOn": [
+													{
+														"activity": "onpremsqlserver_wait_30seconds",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
 												"policy": {
 													"timeout": "0.12:00:00",
 													"retry": 0,
@@ -403,6 +442,15 @@
 														}
 													}
 												]
+											},
+											{
+												"name": "onpremsqlserver_wait_30seconds",
+												"type": "Wait",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"waitTimeInSeconds": 30
+												}
 											}
 										]
 									}
