@@ -45,6 +45,10 @@
 							"lookup_container": {
 								"value": "@pipeline().parameters.metada_container",
 								"type": "Expression"
+							},
+							"lookup_filename": {
+								"value": "@pipeline().parameters.lookup_filename",
+								"type": "Expression"
 							}
 						}
 					}
