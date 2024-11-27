@@ -315,6 +315,22 @@
 														"referenceName": "ds_onprem_sqlserver_abcretail",
 														"type": "DatasetReference",
 														"parameters": {
+															"onprem_sqlserver": {
+																"value": "@pipeline().parameters.onprem_sqlserver",
+																"type": "Expression"
+															},
+															"onprem_sqldb": {
+																"value": "@pipeline().parameters.onprem_sqldb",
+																"type": "Expression"
+															},
+															"onprem_sqlserver_username": {
+																"value": "@pipeline().parameters.onprem_sqlserver_username",
+																"type": "Expression"
+															},
+															"onprem_sqldb_schema": {
+																"value": "@pipeline().parameters.onprem_sqldb_schema",
+																"type": "Expression"
+															},
 															"onprem_sqldb_table_name": {
 																"value": "@activity('lookup_datasets').output.value.filename",
 																"type": "Expression"
