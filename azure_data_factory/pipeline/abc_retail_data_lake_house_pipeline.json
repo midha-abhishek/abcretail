@@ -43,7 +43,7 @@
 								"type": "Expression"
 							},
 							"lookup_container": {
-								"value": "@pipeline().parameters.metada_container",
+								"value": "@pipeline().parameters.metadata_container",
 								"type": "Expression"
 							},
 							"lookup_filename": {
@@ -434,7 +434,7 @@
 			"directory_id": {
 				"type": "string"
 			},
-			"metada_container": {
+			"metadata_container": {
 				"type": "string"
 			},
 			"lookup_filename": {

@@ -13,7 +13,7 @@
 					"storage_account": "dlsaabcretail",
 					"client_id": "3a14b98e-3453-4ab1-ba4b-41c59c2b68aa",
 					"directory_id": "df25728e-a83d-4656-85e7-f7ab9a394f94",
-					"metada_container": "metadata",
+					"metadata_container": "metadata",
 					"lookup_filename": "lookup",
 					"github_username": "midha-abhishek",
 					"github_repository": "abcretail",
