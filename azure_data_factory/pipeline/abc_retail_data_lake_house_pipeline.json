@@ -110,12 +110,67 @@
 															"type": "JsonReadSettings"
 														}
 													},
+													"sink": {
+														"type": "JsonSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "JsonWriteSettings"
+														}
+													},
 													"enableStaging": false
 												},
 												"inputs": [
 													{
 														"referenceName": "ds_http_github_softline_json",
-														"type": "DatasetReference"
+														"type": "DatasetReference",
+														"parameters": {
+															"softline_github_username": {
+																"value": "@pipeline().parameters.github_username",
+																"type": "Expression"
+															},
+															"softline_github_repository": {
+																"value": "@pipeline().parameters.github_repository",
+																"type": "Expression"
+															},
+															"softline_github_branch": {
+																"value": "@pipeline().parameters.github_branch",
+																"type": "Expression"
+															},
+															"softline_github_data_folder": {
+																"value": "@pipeline().parameters.github_softline_data_folder",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_dlsa_abcretail_http_raw_json",
+														"type": "DatasetReference",
+														"parameters": {
+															"http_target_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
+															"http_target_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"http_target_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"http_target_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"http_target_folder": {
+																"value": "@pipeline().parameters.http_folder",
+																"type": "Expression"
+															}
+														}
 													}
 												]
 											}
@@ -160,6 +215,12 @@
 				"type": "string"
 			},
 			"github_softline_data_folder": {
+				"type": "string"
+			},
+			"raw_container": {
+				"type": "string"
+			},
+			"http_folder": {
 				"type": "string"
 			}
 		},
