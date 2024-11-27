@@ -358,7 +358,33 @@
 												"outputs": [
 													{
 														"referenceName": "ds_dlsa_abcretail_onpremsqlserver_raw_parquet",
-														"type": "DatasetReference"
+														"type": "DatasetReference",
+														"parameters": {
+															"onprem_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
+															"onprem_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"onprem_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"onprem_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"onprem_data_folder": {
+																"value": "@pipeline().parameters.onpremsqldb_folder",
+																"type": "Expression"
+															},
+															"onprem_filename": {
+																"value": "@activity('lookup_datasets').output.value.filename",
+																"type": "Expression"
+															}
+														}
 													}
 												]
 											}
