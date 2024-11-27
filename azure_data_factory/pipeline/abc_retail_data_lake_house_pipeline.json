@@ -197,7 +197,24 @@
 														"queryTimeout": "02:00:00",
 														"partitionOption": "None"
 													},
-													"enableStaging": false
+													"sink": {
+														"type": "ParquetSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "ParquetWriteSettings"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"type": "TabularTranslator",
+														"typeConversion": true,
+														"typeConversionSettings": {
+															"allowDataTruncation": true,
+															"treatBooleanAsNumber": false
+														}
+													}
 												},
 												"inputs": [
 													{
@@ -221,6 +238,34 @@
 																"type": "Expression"
 															},
 															"az_sqldb_table_name": {
+																"value": "@activity('lookup_datasets').output.value.filename",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_dlsa_abcretail_azsqldb_raw_parquet",
+														"type": "DatasetReference",
+														"parameters": {
+															"azsqldb_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
+															"azsqldb_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"azsqldb_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"azsqldb_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"azsqldb_filename": {
 																"value": "@activity('lookup_datasets').output.value.filename",
 																"type": "Expression"
 															}
