@@ -265,6 +265,10 @@
 																"value": "@pipeline().parameters.raw_container",
 																"type": "Expression"
 															},
+															"azsqldb_data_folder": {
+																"value": "@pipeline().parameters.azsqldb_folder",
+																"type": "Expression"
+															},
 															"azsqldb_filename": {
 																"value": "@activity('lookup_datasets').output.value.filename",
 																"type": "Expression"
@@ -340,6 +344,9 @@
 				"type": "string"
 			},
 			"az_sqldb_schema": {
+				"type": "string"
+			},
+			"azsqldb_folder": {
 				"type": "string"
 			}
 		},
