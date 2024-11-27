@@ -182,6 +182,17 @@
 									{
 										"value": "onprem_sqlserver"
 									}
+								],
+								"defaultActivities": [
+									{
+										"name": "default_wait_1second",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 1
+										}
+									}
 								]
 							}
 						}
