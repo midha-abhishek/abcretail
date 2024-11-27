@@ -34,6 +34,9 @@
 			},
 			"http_target_folder": {
 				"type": "string"
+			},
+			"http_target_filename": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -42,7 +45,7 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "concat('http_', @item().filename, '.json')",
+					"value": "@concat(dataset().http_target_filename, '.json')",
 					"type": "Expression"
 				},
 				"folderPath": {
