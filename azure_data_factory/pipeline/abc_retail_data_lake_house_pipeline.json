@@ -200,7 +200,7 @@
 												]
 											},
 											{
-												"name": "Copy data1",
+												"name": "http_to_csv",
 												"type": "Copy",
 												"dependsOn": [
 													{
@@ -228,6 +228,17 @@
 														},
 														"formatSettings": {
 															"type": "JsonReadSettings"
+														}
+													},
+													"sink": {
+														"type": "DelimitedTextSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "DelimitedTextWriteSettings",
+															"quoteAllText": true,
+															"fileExtension": ".txt"
 														}
 													},
 													"enableStaging": false
@@ -270,6 +281,12 @@
 																"type": "Expression"
 															}
 														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_dlsa_abcretail_http_raw_csv",
+														"type": "DatasetReference"
 													}
 												]
 											}
