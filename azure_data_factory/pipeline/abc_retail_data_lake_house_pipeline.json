@@ -227,6 +227,40 @@
 														"referenceName": "raw_json_to_csv_unflattened",
 														"type": "DataFlowReference",
 														"datasetParameters": {
+															"rawJSON": {
+																"storage_account": {
+																	"value": "@pipeline().parameters.storage_account",
+																	"type": "Expression"
+																},
+																"client_id": {
+																	"value": "@pipeline().parameters.client_id",
+																	"type": "Expression"
+																},
+																"directory_id": {
+																	"value": "@pipeline().parameters.directory_id",
+																	"type": "Expression"
+																},
+																"container_json": {
+																	"value": "@pipeline().parameters.raw_container",
+																	"type": "Expression"
+																},
+																"filename": {
+																	"value": "@item().filename",
+																	"type": "Expression"
+																},
+																"key_vault": {
+																	"value": "@pipeline().parameters.key_vault",
+																	"type": "Expression"
+																},
+																"client_secret": {
+																	"value": "@pipeline().parameters.client_secret",
+																	"type": "Expression"
+																},
+																"folder_json": {
+																	"value": "@pipeline().parameters.http_folder",
+																	"type": "Expression"
+																}
+															},
 															"rawCSV": {
 																"storage_account": {
 																	"value": "@pipeline().parameters.storage_account",
