@@ -9,11 +9,98 @@
   },
   {
     "source": "http",
-    "filename": "foodwear"
+    "filename": "footwear"
   },
   {
     "source": "http",
     "filename": "home_decor"
   },
-  
+	{
+    "source": "az_sql_db",
+    "filename": "Address"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "Customer"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "CustomerAddress"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "Product"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "ProductCategory"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "ProductDescription"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "ProductModel"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "ProductModelProductDescription"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "SalesOrderDetail"
+  },
+	{
+    "source": "az_sql_db",
+    "filename": "SalesOrderHeader"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "ProductCategories"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "Product"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "ProductQuality"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "CountryRolling"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "StateProvinceRolling"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "Customer"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "Seller"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "CustomerSellerReview"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "CustomerProductReview"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "Promotion"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "SellerProductPromotion"
+  },
+	{
+    "source": "onprem_sqlserver",
+    "filename": "Order"
+  }
 ]
