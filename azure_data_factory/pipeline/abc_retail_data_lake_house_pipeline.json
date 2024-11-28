@@ -27,26 +27,26 @@
 						}
 					},
 					"dataset": {
-						"referenceName": "ds_dlsa_abcretail_metadata_lookup_json",
+						"referenceName": "ds_dlsa_json",
 						"type": "DatasetReference",
 						"parameters": {
-							"lookup_storage_account": {
+							"storage_account": {
 								"value": "@pipeline().parameters.storage_account",
 								"type": "Expression"
 							},
-							"lookup_client_id": {
+							"client_id": {
 								"value": "@pipeline().parameters.client_id",
 								"type": "Expression"
 							},
-							"lookup_directory_id": {
+							"directory_id": {
 								"value": "@pipeline().parameters.directory_id",
 								"type": "Expression"
 							},
-							"lookup_container": {
+							"container_json": {
 								"value": "@pipeline().parameters.metadata_container",
 								"type": "Expression"
 							},
-							"lookup_filename": {
+							"filename": {
 								"value": "@pipeline().parameters.lookup_filename",
 								"type": "Expression"
 							},
