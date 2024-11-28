@@ -13,6 +13,9 @@
 			},
 			"key_vault": {
 				"type": "string"
+			},
+			"client_secret": {
+				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -34,7 +37,10 @@
 						}
 					}
 				},
-				"secretName": "client-secret"
+				"secretName": {
+					"value": "@linkedService().client_secret",
+					"type": "Expression"
+				}
 			}
 		}
 	}
