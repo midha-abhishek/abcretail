@@ -269,10 +269,6 @@
 															"key_vault": {
 																"value": "@pipeline().parameters.key_vault",
 																"type": "Expression"
-															},
-															"az_sqlserver_password:": {
-																"value": "@pipeline().parameters.az_sqlserver_password:",
-																"type": "Expression"
 															}
 														}
 													}
@@ -525,12 +521,6 @@
 				"type": "string"
 			},
 			"client_secret": {
-				"type": "string"
-			},
-			"az_sqlserver_password:": {
-				"type": "string"
-			},
-			"onprem_sqlserver_password:": {
 				"type": "string"
 			}
 		},
