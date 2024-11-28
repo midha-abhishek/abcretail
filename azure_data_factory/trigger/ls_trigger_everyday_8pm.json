@@ -31,7 +31,10 @@
 					"onprem_sqlserver_username": "abhishek",
 					"onprem_sqldb_schema": "dbo",
 					"onpremsqldb_folder": "onpremsqlserver",
-					"key_vault": "kv-abcretail"
+					"key_vault": "kv-abcretail",
+					"client_secret": "client-secret",
+					"az_sqlserver_password:": "azure-sql-server-password",
+					"onprem_sqlserver_password:": "onprem-sqlserver-password"
 				}
 			}
 		],
