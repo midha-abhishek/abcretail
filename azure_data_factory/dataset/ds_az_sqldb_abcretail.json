@@ -16,6 +16,14 @@
 				"az_sqlserver_username": {
 					"value": "@dataset().az_sqlserver_username",
 					"type": "Expression"
+				},
+				"key_vault": {
+					"value": "@dataset().key_vault",
+					"type": "Expression"
+				},
+				"az_sqlserver_password": {
+					"value": "@dataset().az_sqlserver_password:",
+					"type": "Expression"
 				}
 			}
 		},
@@ -33,6 +41,12 @@
 				"type": "string"
 			},
 			"az_sqldb_table_name": {
+				"type": "string"
+			},
+			"key_vault": {
+				"type": "string"
+			},
+			"az_sqlserver_password:": {
 				"type": "string"
 			}
 		},
