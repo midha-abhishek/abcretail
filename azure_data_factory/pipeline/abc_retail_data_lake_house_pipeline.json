@@ -506,6 +506,12 @@
 			},
 			"client_secret": {
 				"type": "string"
+			},
+			"az_sqlserver_password:": {
+				"type": "string"
+			},
+			"onprem_sqlserver_password:": {
+				"type": "string"
 			}
 		},
 		"annotations": []
