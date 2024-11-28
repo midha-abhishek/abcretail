@@ -265,6 +265,10 @@
 															"az_sqldb_table_name": {
 																"value": "@item().filename",
 																"type": "Expression"
+															},
+															"key_vault": {
+																"value": "@pipeline().parameters.key_vault",
+																"type": "Expression"
 															}
 														}
 													}
