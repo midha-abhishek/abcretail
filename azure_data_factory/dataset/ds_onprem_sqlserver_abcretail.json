@@ -20,10 +20,6 @@
 				"key_vault": {
 					"value": "@dataset().key_vault",
 					"type": "Expression"
-				},
-				"onprem_sqlserver_password": {
-					"value": "@dataset().onprem_sqlserver_password:",
-					"type": "Expression"
 				}
 			}
 		},
@@ -44,9 +40,6 @@
 				"type": "string"
 			},
 			"key_vault": {
-				"type": "string"
-			},
-			"onprem_sqlserver_password:": {
 				"type": "string"
 			}
 		},
