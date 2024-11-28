@@ -1,5 +1,5 @@
 {
-	"name": "ds_onprem_sqlserver_abcretail",
+	"name": "ds_onprem_sqlserver",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_onprem_sqlserver_abcretail",
