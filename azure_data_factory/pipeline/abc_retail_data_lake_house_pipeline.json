@@ -190,6 +190,10 @@
 															"key_vault": {
 																"value": "@pipeline().parameters.key_vault",
 																"type": "Expression"
+															},
+															"client_secret": {
+																"value": "@pipeline().parameters.client_secret",
+																"type": "Expression"
 															}
 														}
 													}
