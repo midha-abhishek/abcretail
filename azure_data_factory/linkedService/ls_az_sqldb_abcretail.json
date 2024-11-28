@@ -13,9 +13,6 @@
 			},
 			"key_vault": {
 				"type": "string"
-			},
-			"az_sqlserver_password": {
-				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -40,7 +37,7 @@
 					}
 				},
 				"secretName": {
-					"value": "@linkedService().az_sqlserver_password",
+					"value": "azure-sql-server-password",
 					"type": "Expression"
 				}
 			}
