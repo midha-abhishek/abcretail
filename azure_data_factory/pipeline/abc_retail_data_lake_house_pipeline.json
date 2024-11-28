@@ -288,6 +288,10 @@
 														"referenceName": "ds_dlsa_abcretail_http_raw_csv",
 														"type": "DatasetReference",
 														"parameters": {
+															"target_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
 															"target_client_id": {
 																"value": "@pipeline().parameters.client_id",
 																"type": "Expression"
