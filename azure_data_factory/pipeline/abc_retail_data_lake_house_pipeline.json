@@ -278,7 +278,7 @@
 																"type": "Expression"
 															},
 															"az_sqldb_table_name": {
-																"value": "@activity('lookup_datasets').output.value.filename",
+																"value": "@item().filename",
 																"type": "Expression"
 															}
 														}
@@ -310,7 +310,7 @@
 																"type": "Expression"
 															},
 															"azsqldb_filename": {
-																"value": "@activity('lookup_datasets').output.value.filename",
+																"value": "@item().filename",
 																"type": "Expression"
 															},
 															"key_vault": {
