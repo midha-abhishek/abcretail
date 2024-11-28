@@ -495,30 +495,30 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "ds_dlsa_abcretail_onpremsqlserver_raw_parquet",
+														"referenceName": "ds_dlsa_parquet",
 														"type": "DatasetReference",
 														"parameters": {
-															"onprem_storage_account": {
+															"storage_account": {
 																"value": "@pipeline().parameters.storage_account",
 																"type": "Expression"
 															},
-															"onprem_client_id": {
+															"client_id": {
 																"value": "@pipeline().parameters.client_id",
 																"type": "Expression"
 															},
-															"onprem_directory_id": {
+															"directory_id": {
 																"value": "@pipeline().parameters.directory_id",
 																"type": "Expression"
 															},
-															"onprem_container": {
+															"container_parquet": {
 																"value": "@pipeline().parameters.raw_container",
 																"type": "Expression"
 															},
-															"onprem_data_folder": {
+															"folder_parquet": {
 																"value": "@pipeline().parameters.onpremsqldb_folder",
 																"type": "Expression"
 															},
-															"onprem_filename": {
+															"filename": {
 																"value": "@item().filename",
 																"type": "Expression"
 															},
