@@ -33,8 +33,7 @@
 					"onpremsqldb_folder": "onpremsqlserver",
 					"key_vault": "kv-abcretail",
 					"client_secret": "client-secret",
-					"http_csv_folder": "http/csv",
-					"lookup_folder": "lookup"
+					"http_csv_folder": "http/csv"
 				}
 			}
 		],
