@@ -20,6 +20,10 @@
 				"key_vault": {
 					"value": "@dataset().key_vault",
 					"type": "Expression"
+				},
+				"client_secret": {
+					"value": "@dataset().client_secret",
+					"type": "Expression"
 				}
 			}
 		},
@@ -43,6 +47,9 @@
 				"type": "string"
 			},
 			"key_vault": {
+				"type": "string"
+			},
+			"client_secret": {
 				"type": "string"
 			}
 		},
