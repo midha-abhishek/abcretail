@@ -1,0 +1,56 @@
+{
+	"name": "ds_http_github_softline_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_http_github_softline_json",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"github_username": {
+					"value": "@dataset().softline_github_username",
+					"type": "Expression"
+				},
+				"github_repository": {
+					"value": "@dataset().softline_github_repository",
+					"type": "Expression"
+				},
+				"github_branch": {
+					"value": "@dataset().softline_github_branch",
+					"type": "Expression"
+				},
+				"github_data_folder": {
+					"value": "@dataset().softline_github_data_folder",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"softline_github_username": {
+				"type": "string"
+			},
+			"softline_github_repository": {
+				"type": "string"
+			},
+			"softline_github_branch": {
+				"type": "string"
+			},
+			"softline_github_data_folder": {
+				"type": "string"
+			},
+			"softline_github_filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@concat(dataset().softline_github_filename, '.json')",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {}
+	}
+}

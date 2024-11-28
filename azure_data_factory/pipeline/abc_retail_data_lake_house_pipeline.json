@@ -1,0 +1,498 @@
+{
+	"name": "abc_retail_data_lake_house_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "lookup_datasets",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "JsonSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "JsonReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "ds_dlsa_abcretail_metadata_lookup_json",
+						"type": "DatasetReference",
+						"parameters": {
+							"lookup_storage_account": {
+								"value": "@pipeline().parameters.storage_account",
+								"type": "Expression"
+							},
+							"lookup_client_id": {
+								"value": "@pipeline().parameters.client_id",
+								"type": "Expression"
+							},
+							"lookup_directory_id": {
+								"value": "@pipeline().parameters.directory_id",
+								"type": "Expression"
+							},
+							"lookup_container": {
+								"value": "@pipeline().parameters.metadata_container",
+								"type": "Expression"
+							},
+							"lookup_filename": {
+								"value": "@pipeline().parameters.lookup_filename",
+								"type": "Expression"
+							},
+							"key_vault": {
+								"value": "@pipeline().parameters.key_vault",
+								"type": "Expression"
+							}
+						}
+					},
+					"firstRowOnly": false
+				}
+			},
+			{
+				"name": "for_each_dataset",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "lookup_datasets",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('lookup_datasets').output.value",
+						"type": "Expression"
+					},
+					"isSequential": false,
+					"activities": [
+						{
+							"name": "switch_dataset_source_cases",
+							"type": "Switch",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"on": {
+									"value": "@item().source",
+									"type": "Expression"
+								},
+								"cases": [
+									{
+										"value": "http",
+										"activities": [
+											{
+												"name": "http_to_raw",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "JsonSource",
+														"storeSettings": {
+															"type": "HttpReadSettings",
+															"requestMethod": "GET"
+														},
+														"formatSettings": {
+															"type": "JsonReadSettings"
+														}
+													},
+													"sink": {
+														"type": "JsonSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "JsonWriteSettings"
+														}
+													},
+													"enableStaging": false
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_http_github_softline_json",
+														"type": "DatasetReference",
+														"parameters": {
+															"softline_github_username": {
+																"value": "@pipeline().parameters.github_username",
+																"type": "Expression"
+															},
+															"softline_github_repository": {
+																"value": "@pipeline().parameters.github_repository",
+																"type": "Expression"
+															},
+															"softline_github_branch": {
+																"value": "@pipeline().parameters.github_branch",
+																"type": "Expression"
+															},
+															"softline_github_data_folder": {
+																"value": "@pipeline().parameters.github_softline_data_folder",
+																"type": "Expression"
+															},
+															"softline_github_filename": {
+																"value": "@item().filename",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_dlsa_abcretail_http_raw_json",
+														"type": "DatasetReference",
+														"parameters": {
+															"http_target_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
+															"http_target_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"http_target_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"http_target_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"http_target_folder": {
+																"value": "@pipeline().parameters.http_folder",
+																"type": "Expression"
+															},
+															"http_target_filename": {
+																"value": "@item().filename",
+																"type": "Expression"
+															},
+															"key_vault": {
+																"value": "@pipeline().parameters.key_vault",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "az_sql_db",
+										"activities": [
+											{
+												"name": "azsqldb_to_raw",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "AzureSqlSource",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"sink": {
+														"type": "ParquetSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "ParquetWriteSettings"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"type": "TabularTranslator",
+														"typeConversion": true,
+														"typeConversionSettings": {
+															"allowDataTruncation": true,
+															"treatBooleanAsNumber": false
+														}
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_az_sqldb_abcretail",
+														"type": "DatasetReference",
+														"parameters": {
+															"az_sqlserver": {
+																"value": "@pipeline().parameters.az_sqlserver",
+																"type": "Expression"
+															},
+															"az_sqldb": {
+																"value": "@pipeline().parameters.az_sqldb",
+																"type": "Expression"
+															},
+															"az_sqlserver_username": {
+																"value": "@pipeline().parameters.az_sqlserver_username",
+																"type": "Expression"
+															},
+															"az_sqldb_schema": {
+																"value": "@pipeline().parameters.az_sqldb_schema",
+																"type": "Expression"
+															},
+															"az_sqldb_table_name": {
+																"value": "@item().filename",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_dlsa_abcretail_azsqldb_raw_parquet",
+														"type": "DatasetReference",
+														"parameters": {
+															"azsqldb_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
+															"azsqldb_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"azsqldb_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"azsqldb_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"azsqldb_data_folder": {
+																"value": "@pipeline().parameters.azsqldb_folder",
+																"type": "Expression"
+															},
+															"azsqldb_filename": {
+																"value": "@item().filename",
+																"type": "Expression"
+															},
+															"key_vault": {
+																"value": "@pipeline().parameters.key_vault",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									},
+									{
+										"value": "onprem_sqlserver",
+										"activities": [
+											{
+												"name": "onpremsqlserver_to_raw",
+												"type": "Copy",
+												"dependsOn": [],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "SqlServerSource",
+														"queryTimeout": "02:00:00",
+														"partitionOption": "None"
+													},
+													"sink": {
+														"type": "ParquetSink",
+														"storeSettings": {
+															"type": "AzureBlobFSWriteSettings"
+														},
+														"formatSettings": {
+															"type": "ParquetWriteSettings"
+														}
+													},
+													"enableStaging": false,
+													"translator": {
+														"type": "TabularTranslator",
+														"typeConversion": true,
+														"typeConversionSettings": {
+															"allowDataTruncation": true,
+															"treatBooleanAsNumber": false
+														}
+													}
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_onprem_sqlserver_abcretail",
+														"type": "DatasetReference",
+														"parameters": {
+															"onprem_sqlserver": {
+																"value": "@pipeline().parameters.onprem_sqlserver",
+																"type": "Expression"
+															},
+															"onprem_sqldb": {
+																"value": "@pipeline().parameters.onprem_sqldb",
+																"type": "Expression"
+															},
+															"onprem_sqlserver_username": {
+																"value": "@pipeline().parameters.onprem_sqlserver_username",
+																"type": "Expression"
+															},
+															"onprem_sqldb_schema": {
+																"value": "@pipeline().parameters.onprem_sqldb_schema",
+																"type": "Expression"
+															},
+															"onprem_sqldb_table_name": {
+																"value": "@item().filename",
+																"type": "Expression"
+															}
+														}
+													}
+												],
+												"outputs": [
+													{
+														"referenceName": "ds_dlsa_abcretail_onpremsqlserver_raw_parquet",
+														"type": "DatasetReference",
+														"parameters": {
+															"onprem_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
+															"onprem_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"onprem_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"onprem_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"onprem_data_folder": {
+																"value": "@pipeline().parameters.onpremsqldb_folder",
+																"type": "Expression"
+															},
+															"onprem_filename": {
+																"value": "@item().filename",
+																"type": "Expression"
+															},
+															"key_vault": {
+																"value": "@pipeline().parameters.key_vault",
+																"type": "Expression"
+															}
+														}
+													}
+												]
+											}
+										]
+									}
+								],
+								"defaultActivities": [
+									{
+										"name": "default_wait_1second",
+										"type": "Wait",
+										"dependsOn": [],
+										"userProperties": [],
+										"typeProperties": {
+											"waitTimeInSeconds": 1
+										}
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"parameters": {
+			"storage_account": {
+				"type": "string"
+			},
+			"client_id": {
+				"type": "string"
+			},
+			"directory_id": {
+				"type": "string"
+			},
+			"metadata_container": {
+				"type": "string"
+			},
+			"lookup_filename": {
+				"type": "string"
+			},
+			"github_username": {
+				"type": "string"
+			},
+			"github_repository": {
+				"type": "string"
+			},
+			"github_branch": {
+				"type": "string"
+			},
+			"github_softline_data_folder": {
+				"type": "string"
+			},
+			"raw_container": {
+				"type": "string"
+			},
+			"http_folder": {
+				"type": "string"
+			},
+			"az_sqlserver": {
+				"type": "string"
+			},
+			"az_sqldb": {
+				"type": "string"
+			},
+			"az_sqlserver_username": {
+				"type": "string"
+			},
+			"az_sqldb_schema": {
+				"type": "string"
+			},
+			"azsqldb_folder": {
+				"type": "string"
+			},
+			"onprem_sqlserver": {
+				"type": "string"
+			},
+			"onprem_sqldb": {
+				"type": "string"
+			},
+			"onprem_sqlserver_username": {
+				"type": "string"
+			},
+			"onprem_sqldb_schema": {
+				"type": "string"
+			},
+			"onpremsqldb_folder": {
+				"type": "string"
+			},
+			"key_vault": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}
