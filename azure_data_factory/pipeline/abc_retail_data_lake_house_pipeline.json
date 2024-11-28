@@ -57,6 +57,10 @@
 							"client_secret": {
 								"value": "@pipeline().parameters.client_secret",
 								"type": "Expression"
+							},
+							"folder_json": {
+								"value": "@pipeline().parameters.lookup_folder",
+								"type": "Expression"
 							}
 						}
 					},
@@ -160,30 +164,26 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "ds_dlsa_abcretail_http_raw_json",
+														"referenceName": "ds_dlsa_json",
 														"type": "DatasetReference",
 														"parameters": {
-															"http_target_storage_account": {
+															"storage_account": {
 																"value": "@pipeline().parameters.storage_account",
 																"type": "Expression"
 															},
-															"http_target_client_id": {
+															"client_id": {
 																"value": "@pipeline().parameters.client_id",
 																"type": "Expression"
 															},
-															"http_target_directory_id": {
+															"directory_id": {
 																"value": "@pipeline().parameters.directory_id",
 																"type": "Expression"
 															},
-															"http_target_container": {
+															"container_json": {
 																"value": "@pipeline().parameters.raw_container",
 																"type": "Expression"
 															},
-															"http_target_folder": {
-																"value": "@pipeline().parameters.http_folder",
-																"type": "Expression"
-															},
-															"http_target_filename": {
+															"filename": {
 																"value": "@item().filename",
 																"type": "Expression"
 															},
@@ -194,13 +194,17 @@
 															"client_secret": {
 																"value": "@pipeline().parameters.client_secret",
 																"type": "Expression"
+															},
+															"folder_json": {
+																"value": "@pipeline().parameters.http_folder",
+																"type": "Expression"
 															}
 														}
 													}
 												]
 											},
 											{
-												"name": "http_to_raw_csv",
+												"name": "raw_to_csv",
 												"type": "ExecuteDataFlow",
 												"dependsOn": [
 													{
@@ -621,6 +625,9 @@
 				"type": "string"
 			},
 			"http_csv_folder": {
+				"type": "string"
+			},
+			"lookup_folder": {
 				"type": "string"
 			}
 		},
