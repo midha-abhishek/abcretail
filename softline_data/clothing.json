@@ -1,35 +1,35 @@
 [
   {
-    "ProductID": 4,
-    "Category": "Accessories",
-    "SubCategory": "Watches",
-    "ProductName": "Luxury Leather Watch",
-    "Brand": "Timepiece Co.",
-    "Sizes": ["One Size"],
-    "Colors": ["Brown", "Black"],
-    "Price": 149.99,
-    "Description": "A timeless leather strap watch with a modern design."
+    "ProductID": 1,
+    "Category": "Clothing",
+    "SubCategory": "Menswear",
+    "ProductName": "Slim Fit T-Shirt",
+    "Brand": "FashionWear",
+    "Sizes": ["S", "M", "L", "XL"],
+    "Colors": ["Red", "Blue", "Black"],
+    "Price": 29.99,
+    "Description": "A stylish slim-fit t-shirt perfect for casual outings."
   },
   {
-    "ProductID": 5,
-    "Category": "Accessories",
-    "SubCategory": "Jewelry",
-    "ProductName": "Silver Pendant Necklace",
-    "Brand": "ShinyThings",
-    "Sizes": ["One Size"],
-    "Colors": ["Silver"],
-    "Price": 39.99,
-    "Description": "A delicate silver pendant necklace for everyday wear."
+    "ProductID": 2,
+    "Category": "Clothing",
+    "SubCategory": "Womenswear",
+    "ProductName": "Floral Summer Dress",
+    "Brand": "ElegantStyle",
+    "Sizes": ["S", "M", "L"],
+    "Colors": ["White", "Yellow", "Pink"],
+    "Price": 49.99,
+    "Description": "A light and breezy summer dress with a floral design."
   },
   {
-    "ProductID": 6,
-    "Category": "Accessories",
-    "SubCategory": "Bags",
-    "ProductName": "Leather Backpack",
-    "Brand": "Traveler's Choice",
-    "Sizes": ["Medium"],
-    "Colors": ["Brown", "Black"],
-    "Price": 89.99,
-    "Description": "A durable leather backpack with multiple compartments."
+    "ProductID": 3,
+    "Category": "Clothing",
+    "SubCategory": "Outerwear",
+    "ProductName": "Classic Denim Jacket",
+    "Brand": "UrbanEdge",
+    "Sizes": ["M", "L", "XL"],
+    "Colors": ["Blue", "Black"],
+    "Price": 69.99,
+    "Description": "A classic denim jacket for all occasions."
   }
 ]
