@@ -13,9 +13,6 @@
 			},
 			"key_vault": {
 				"type": "string"
-			},
-			"onprem_sqlserver_password": {
-				"type": "string"
 			}
 		},
 		"annotations": [],
@@ -40,7 +37,7 @@
 					}
 				},
 				"secretName": {
-					"value": "@linkedService().onprem_sqlserver_password",
+					"value": "onprem-sqlserver-password",
 					"type": "Expression"
 				}
 			}
