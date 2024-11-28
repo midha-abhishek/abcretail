@@ -286,7 +286,37 @@
 												"outputs": [
 													{
 														"referenceName": "ds_dlsa_abcretail_http_raw_csv",
-														"type": "DatasetReference"
+														"type": "DatasetReference",
+														"parameters": {
+															"target_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"target_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"key_vault": {
+																"value": "@pipeline().parameters.key_vault",
+																"type": "Expression"
+															},
+															"client_secret": {
+																"value": "@pipeline().parameters.client_secret",
+																"type": "Expression"
+															},
+															"target_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"target_http_csv_folder": {
+																"value": "@pipeline().parameters.http_csv_folder",
+																"type": "Expression"
+															},
+															"target_filename": {
+																"value": "@item().filename",
+																"type": "Expression"
+															}
+														}
 													}
 												]
 											}
