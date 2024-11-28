@@ -592,6 +592,9 @@
 			},
 			"client_secret": {
 				"type": "string"
+			},
+			"http_csv_folder": {
+				"type": "string"
 			}
 		},
 		"annotations": []
