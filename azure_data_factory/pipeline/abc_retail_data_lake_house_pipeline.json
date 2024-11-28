@@ -198,6 +198,80 @@
 														}
 													}
 												]
+											},
+											{
+												"name": "Copy data1",
+												"type": "Copy",
+												"dependsOn": [
+													{
+														"activity": "http_to_raw",
+														"dependencyConditions": [
+															"Succeeded"
+														]
+													}
+												],
+												"policy": {
+													"timeout": "0.12:00:00",
+													"retry": 0,
+													"retryIntervalInSeconds": 30,
+													"secureOutput": false,
+													"secureInput": false
+												},
+												"userProperties": [],
+												"typeProperties": {
+													"source": {
+														"type": "JsonSource",
+														"storeSettings": {
+															"type": "AzureBlobFSReadSettings",
+															"recursive": true,
+															"enablePartitionDiscovery": false
+														},
+														"formatSettings": {
+															"type": "JsonReadSettings"
+														}
+													},
+													"enableStaging": false
+												},
+												"inputs": [
+													{
+														"referenceName": "ds_dlsa_abcretail_http_raw_json",
+														"type": "DatasetReference",
+														"parameters": {
+															"http_target_storage_account": {
+																"value": "@pipeline().parameters.storage_account",
+																"type": "Expression"
+															},
+															"http_target_client_id": {
+																"value": "@pipeline().parameters.client_id",
+																"type": "Expression"
+															},
+															"http_target_directory_id": {
+																"value": "@pipeline().parameters.directory_id",
+																"type": "Expression"
+															},
+															"http_target_container": {
+																"value": "@pipeline().parameters.raw_container",
+																"type": "Expression"
+															},
+															"http_target_folder": {
+																"value": "@pipeline().parameters.http_folder",
+																"type": "Expression"
+															},
+															"http_target_filename": {
+																"value": "@item().filename",
+																"type": "Expression"
+															},
+															"key_vault": {
+																"value": "@pipeline().parameters.key_vault",
+																"type": "Expression"
+															},
+															"client_secret": {
+																"value": "@pipeline().parameters.client_secret",
+																"type": "Expression"
+															}
+														}
+													}
+												]
 											}
 										]
 									},
