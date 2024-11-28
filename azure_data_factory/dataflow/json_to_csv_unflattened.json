@@ -1,5 +1,5 @@
 {
-	"name": "raw_json_to_csv_unflattened",
+	"name": "json_to_csv_unflattened",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {

@@ -224,7 +224,7 @@
 												"userProperties": [],
 												"typeProperties": {
 													"dataflow": {
-														"referenceName": "raw_json_to_csv_unflattened",
+														"referenceName": "json_to_csv_unflattened",
 														"type": "DataFlowReference",
 														"datasetParameters": {
 															"rawJSON": {
