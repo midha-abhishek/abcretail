@@ -269,6 +269,10 @@
 															"key_vault": {
 																"value": "@pipeline().parameters.key_vault",
 																"type": "Expression"
+															},
+															"az_sqlserver_password:": {
+																"value": "@pipeline().parameters.az_sqlserver_password:",
+																"type": "Expression"
 															}
 														}
 													}
