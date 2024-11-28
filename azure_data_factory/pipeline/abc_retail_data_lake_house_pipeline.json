@@ -388,6 +388,10 @@
 															"key_vault": {
 																"value": "@pipeline().parameters.key_vault",
 																"type": "Expression"
+															},
+															"onprem_sqlserver_password:": {
+																"value": "@pipeline().parameters.onprem_sqlserver_password:",
+																"type": "Expression"
 															}
 														}
 													}
