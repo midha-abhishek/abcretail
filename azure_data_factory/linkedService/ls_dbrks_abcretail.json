@@ -1,0 +1,52 @@
+{
+	"name": "ls_dbrks_abcretail",
+	"properties": {
+		"parameters": {
+			"dbrks_workspace": {
+				"type": "string"
+			},
+			"key_vault": {
+				"type": "string"
+			},
+			"dbrks_token": {
+				"type": "string"
+			},
+			"cluster_version": {
+				"type": "string"
+			},
+			"cluster_node_type": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://@{linkedService().dbrks_workspace}.azuredatabricks.net",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "ls_kv_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"key_vault": {
+							"value": "@linkedService().key_vault",
+							"type": "Expression"
+						}
+					}
+				},
+				"secretName": {
+					"value": "@linkedService().dbrks_token",
+					"type": "Expression"
+				}
+			},
+			"newClusterNodeType": "@linkedService().cluster_node_type",
+			"newClusterNumOfWorker": "1",
+			"newClusterSparkEnvVars": {
+				"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+			},
+			"newClusterVersion": "@linkedService().cluster_version",
+			"clusterOption": "Fixed",
+			"newClusterInitScripts": []
+		}
+	}
+}
