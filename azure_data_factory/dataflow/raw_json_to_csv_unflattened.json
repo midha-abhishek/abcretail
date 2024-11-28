@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "ds_dlsa_abcretail_http_raw_json",
+						"referenceName": "ds_dlsa_json",
 						"type": "DatasetReference"
 					},
 					"name": "rawJSON"
@@ -15,7 +15,7 @@
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "ds_dlsa_abcretail_http_raw_csv",
+						"referenceName": "ds_dlsa_csv",
 						"type": "DatasetReference"
 					},
 					"name": "rawCSV"
@@ -23,7 +23,11 @@
 			],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          source as string,",
+				"          filename as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'arrayOfDocuments') ~> rawJSON",

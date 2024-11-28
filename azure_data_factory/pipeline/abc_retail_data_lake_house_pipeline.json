@@ -227,40 +227,6 @@
 														"referenceName": "raw_json_to_csv_unflattened",
 														"type": "DataFlowReference",
 														"datasetParameters": {
-															"rawJSON": {
-																"http_target_storage_account": {
-																	"value": "@pipeline().parameters.storage_account",
-																	"type": "Expression"
-																},
-																"http_target_client_id": {
-																	"value": "@pipeline().parameters.client_id",
-																	"type": "Expression"
-																},
-																"http_target_directory_id": {
-																	"value": "@pipeline().parameters.directory_id",
-																	"type": "Expression"
-																},
-																"http_target_container": {
-																	"value": "@pipeline().parameters.raw_container",
-																	"type": "Expression"
-																},
-																"http_target_folder": {
-																	"value": "@pipeline().parameters.http_folder",
-																	"type": "Expression"
-																},
-																"http_target_filename": {
-																	"value": "@item().filename",
-																	"type": "Expression"
-																},
-																"key_vault": {
-																	"value": "@pipeline().parameters.key_vault",
-																	"type": "Expression"
-																},
-																"client_secret": {
-																	"value": "@pipeline().parameters.client_secret",
-																	"type": "Expression"
-																}
-															},
 															"rawCSV": {
 																"target_storage_account": {
 																	"value": "@pipeline().parameters.storage_account",
