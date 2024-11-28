@@ -228,15 +228,15 @@
 														"type": "DataFlowReference",
 														"datasetParameters": {
 															"rawCSV": {
-																"target_storage_account": {
+																"storage_account": {
 																	"value": "@pipeline().parameters.storage_account",
 																	"type": "Expression"
 																},
-																"target_client_id": {
+																"client_id": {
 																	"value": "@pipeline().parameters.client_id",
 																	"type": "Expression"
 																},
-																"target_directory_id": {
+																"directory_id": {
 																	"value": "@pipeline().parameters.directory_id",
 																	"type": "Expression"
 																},
@@ -248,15 +248,15 @@
 																	"value": "@pipeline().parameters.client_secret",
 																	"type": "Expression"
 																},
-																"target_container": {
+																"container_csv": {
 																	"value": "@pipeline().parameters.raw_container",
 																	"type": "Expression"
 																},
-																"target_http_csv_folder": {
+																"folder_csv": {
 																	"value": "@pipeline().parameters.http_csv_folder",
 																	"type": "Expression"
 																},
-																"target_filename": {
+																"filename": {
 																	"value": "@item().filename",
 																	"type": "Expression"
 																}
