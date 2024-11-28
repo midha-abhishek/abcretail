@@ -1,20 +1,20 @@
 {
-	"name": "ds_dlsa_abcretail_azsqldb_raw_parquet",
+	"name": "ds_dlsa_parquet",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_dlsa_abcretail",
 			"type": "LinkedServiceReference",
 			"parameters": {
 				"storage_account": {
-					"value": "@dataset().azsqldb_storage_account",
+					"value": "@dataset().storage_account",
 					"type": "Expression"
 				},
 				"client_id": {
-					"value": "@dataset().azsqldb_client_id",
+					"value": "@dataset().client_id",
 					"type": "Expression"
 				},
 				"directory_id": {
-					"value": "@dataset().azsqldb_directory_id",
+					"value": "@dataset().directory_id",
 					"type": "Expression"
 				},
 				"key_vault": {
@@ -28,22 +28,22 @@
 			}
 		},
 		"parameters": {
-			"azsqldb_storage_account": {
+			"storage_account": {
 				"type": "string"
 			},
-			"azsqldb_client_id": {
+			"client_id": {
 				"type": "string"
 			},
-			"azsqldb_directory_id": {
+			"directory_id": {
 				"type": "string"
 			},
-			"azsqldb_container": {
+			"container_parquet": {
 				"type": "string"
 			},
-			"azsqldb_data_folder": {
+			"folder_parquet": {
 				"type": "string"
 			},
-			"azsqldb_filename": {
+			"filename": {
 				"type": "string"
 			},
 			"key_vault": {
@@ -59,15 +59,15 @@
 			"location": {
 				"type": "AzureBlobFSLocation",
 				"fileName": {
-					"value": "@concat(dataset().azsqldb_filename, '.parquet')",
+					"value": "@concat(dataset().filename, '.parquet')",
 					"type": "Expression"
 				},
 				"folderPath": {
-					"value": "@dataset().azsqldb_data_folder",
+					"value": "@dataset().folder_parquet",
 					"type": "Expression"
 				},
 				"fileSystem": {
-					"value": "@dataset().azsqldb_container",
+					"value": "@dataset().container_parquet",
 					"type": "Expression"
 				}
 			},

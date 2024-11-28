@@ -348,7 +348,7 @@
 												},
 												"inputs": [
 													{
-														"referenceName": "ds_az_sqldb_abcretail",
+														"referenceName": "ds_az_sqldb",
 														"type": "DatasetReference",
 														"parameters": {
 															"az_sqlserver": {
@@ -380,30 +380,30 @@
 												],
 												"outputs": [
 													{
-														"referenceName": "ds_dlsa_abcretail_azsqldb_raw_parquet",
+														"referenceName": "ds_dlsa_parquet",
 														"type": "DatasetReference",
 														"parameters": {
-															"azsqldb_storage_account": {
+															"storage_account": {
 																"value": "@pipeline().parameters.storage_account",
 																"type": "Expression"
 															},
-															"azsqldb_client_id": {
+															"client_id": {
 																"value": "@pipeline().parameters.client_id",
 																"type": "Expression"
 															},
-															"azsqldb_directory_id": {
+															"directory_id": {
 																"value": "@pipeline().parameters.directory_id",
 																"type": "Expression"
 															},
-															"azsqldb_container": {
+															"container_parquet": {
 																"value": "@pipeline().parameters.raw_container",
 																"type": "Expression"
 															},
-															"azsqldb_data_folder": {
+															"folder_parquet": {
 																"value": "@pipeline().parameters.azsqldb_folder",
 																"type": "Expression"
 															},
-															"azsqldb_filename": {
+															"filename": {
 																"value": "@item().filename",
 																"type": "Expression"
 															},

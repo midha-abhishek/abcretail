@@ -1,5 +1,5 @@
 {
-	"name": "ds_az_sqldb_abcretail",
+	"name": "ds_az_sqldb",
 	"properties": {
 		"linkedServiceName": {
 			"referenceName": "ls_az_sqldb_abcretail",
