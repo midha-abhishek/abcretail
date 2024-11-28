@@ -184,7 +184,7 @@
 																"type": "Expression"
 															},
 															"filename": {
-																"value": "@item().filename",
+																"value": "item().filename",
 																"type": "Expression"
 															},
 															"key_vault": {
