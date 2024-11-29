@@ -39,7 +39,8 @@
 					"dbrks_token": "databricks-token",
 					"cluster_version": "15.4.x-scala2.12",
 					"cluster_node_type": "Standard_DS3_v2",
-					"dbrks_data_cleaning_notebook": "/abcretail/data_cleaning"
+					"dbrks_data_cleaning_notebook": "/abcretail/data_cleaning",
+					"dbrks_etl_notebook": "/abcretail/etl_business_case"
 				}
 			}
 		],
