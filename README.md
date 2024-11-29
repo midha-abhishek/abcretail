@@ -107,3 +107,7 @@ VALUES
 SELECT * FROM Customer;
 ```
 
+The following `ER Diagram`  shows the overview schema of the on-premise databse:
+
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/ERDiagram.png)
+
