@@ -187,4 +187,5 @@ To go through the array output, **`Foreach`** activity was used with a **`Switch
 For the JSON data from the ***HTTP API***, two sequenced parameterized activities were used:
 
 - A **`Copy data`** activity to simply copy the JSON data as it is.
-- A **`Data flow`** to make sure that the data from the 
+- A **`Data flow`** to ensure that the nested objects and arrays were saved properly under their CSV headers.
+
