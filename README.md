@@ -56,7 +56,7 @@ The project involves data ingestion from multiple sources:
 
 The *`raw`* data from the various sources is then stored onto the "raw" container of the ***Azure Data Lake Storage Gen2 Account*** using ***Azure Data Factory*** pipeline.
 
-**`Lookup`**, **`Foreach`** and **`Swith`** activities are used to automate the dynamic pipeline for each dataset and data source.
+**`Lookup`**, **`Foreach`** and **`Switch`** activities are used to automate the dynamic pipeline for each dataset and data source.
 
 The JSON raw data are stored first as it is using the **`Copy data`** activity, and then as CSV using the `Data flow` to ensure that the nested objects and arrays are saved properly under their respective CSV headers.
 
