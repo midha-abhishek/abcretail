@@ -604,98 +604,184 @@
 						}
 					}
 				}
+			},
+			{
+				"name": "etl_business_case",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "data_cleaning",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.dbrks_etl_notebook",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_dbrks_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"dbrks_workspace": {
+							"value": "@pipeline().parameters.dbrks_workspace",
+							"type": "Expression"
+						},
+						"key_vault": {
+							"value": "@pipeline().parameters.key_vault",
+							"type": "Expression"
+						},
+						"dbrks_token": {
+							"value": "@pipeline().parameters.dbrks_token",
+							"type": "Expression"
+						},
+						"cluster_version": {
+							"value": "@pipeline().parameters.cluster_version",
+							"type": "Expression"
+						},
+						"cluster_node_type": {
+							"value": "@pipeline().parameters.cluster_node_type",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
 			"storage_account": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dlsaabcretail"
 			},
 			"client_id": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "3a14b98e-3453-4ab1-ba4b-41c59c2b68aa"
 			},
 			"directory_id": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "df25728e-a83d-4656-85e7-f7ab9a394f94"
 			},
 			"metadata_container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "metadata"
 			},
 			"lookup_filename": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "lookup"
 			},
 			"github_username": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "midha-abhishek"
 			},
 			"github_repository": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "abcretail"
 			},
 			"github_branch": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dev"
 			},
 			"github_softline_data_folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "softline_data"
 			},
 			"raw_container": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "raw"
 			},
 			"http_folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "http"
 			},
 			"az_sqlserver": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "sqlserver-abcretail"
 			},
 			"az_sqldb": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "sqldb_abcretail"
 			},
 			"az_sqlserver_username": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "abhishekmidha"
 			},
 			"az_sqldb_schema": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "SalesLT"
 			},
 			"azsqldb_folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "azsqldb"
 			},
 			"onprem_sqlserver": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "localhost"
 			},
 			"onprem_sqldb": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "onprem_abcretail"
 			},
 			"onprem_sqlserver_username": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "abhishek"
 			},
 			"onprem_sqldb_schema": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "dbo"
 			},
 			"onpremsqldb_folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "onpremsqlserver"
 			},
 			"key_vault": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "kv-abcretail"
 			},
 			"client_secret": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "client-secret"
 			},
 			"http_csv_folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "http/csv"
 			},
 			"lookup_folder": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "lookup"
 			},
 			"dbrks_workspace": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "adb-1495672711773585.5"
 			},
 			"dbrks_token": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "databricks-token"
 			},
 			"cluster_version": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "15.4.x-scala2.12"
 			},
 			"cluster_node_type": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "Standard_DS3_v2"
 			},
 			"dbrks_data_cleaning_notebook": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "/abcretail/data_cleaning"
+			},
+			"dbrks_etl_notebook": {
+				"type": "string",
+				"defaultValue": "/abcretail/etl_business_case"
 			}
 		},
 		"annotations": []
