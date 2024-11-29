@@ -2,6 +2,20 @@
 
 ## A Data Lake House Project
 
+# Technologies Involved
+
+- **GitHub**
+- **Microsoft Entra ID** with **Azure Default Directory**
+- **Azure Key Vault**
+- **Azure SQL Database**
+- **Microsoft SQL Server**
+- **DBeaver**
+- **Microsoft Integration Runtime**
+- **Azure Data Lake Gen2 Storage Account**
+- **Azure Data Factory**
+- **Azure Databricks**
+- **Azure Synapse Analytics**
+
 ## Abstract
 
 This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deployment (CI/CD)`* throughout its course.
@@ -26,4 +40,8 @@ The project involves data ingestion from multiple sources:
 > - [clothing.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/clothing.json)
 > - [footwear.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/footwear.json)
 > - [home_decor.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/home_decor.json)
+
+
+
+The *`raw`* data from the various sources is then stored onto the "raw" container of the ***Azure Data Lake Storage Gen2 Account***.
 
