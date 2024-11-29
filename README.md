@@ -70,4 +70,4 @@ The two ***Azure Databricks*** clusters are incorporated into the ***Azure Data 
 
 ***Azure Synapse Analytics*** with a `Serverless Database Pool` is used to create external tables from the Delta Tables in the curated and staging containers of the Storage Account.
 
-Using *`Transac-SQL (T-SQL)`* in the **Azure Synapse Analytics***, a thorough analysis was performed on the available data from the various sources.
+Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough analysis was performed on the available data from the various sources.
