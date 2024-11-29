@@ -131,3 +131,6 @@ Created an ***Azure Data Lake Gen2 Storage Account*** with the following `Blob S
 - curated
 - staging
 
+Under ***IAM Access Control***, appropriate roles were assigned to the ***Azure Default Directory*** application to give other resources (such as ***Azure Data Factory***, ***Azure Databricks*** and ***Azure Synapse Analytics***) required access through the `Service Principal`.
+
+### 
