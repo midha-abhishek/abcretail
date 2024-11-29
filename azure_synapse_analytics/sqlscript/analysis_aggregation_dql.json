@@ -1,0 +1,17 @@
+{
+	"name": "analysis_aggregation_dql",
+	"properties": {
+		"content": {
+			"query": "-- Count of Softline Products by Category\n\nSELECT Category, COUNT(*) AS ProductCount\nFROM (\n    SELECT Category FROM [http_Accessories]\n    UNION ALL\n    SELECT Category FROM [http_Clothing]\n    UNION ALL\n    SELECT Category FROM [http_Footwear]\n) AS AllProducts\nGROUP BY Category\nORDER BY ProductCount DESC;\n\n\n\n-- Top 5 Sellers by Sales Revenue\n\nSELECT TOP 5 s.SellerName, SUM(sp.Price) AS TotalRevenue\nFROM [onprem_SellerProductPromotion] sp\nJOIN [onprem_Seller] s ON sp.SellerID = s.SellerID\nGROUP BY s.SellerName\nORDER BY TotalRevenue DESC;\n\n\n\n-- Average Softline Product Price by Category\n\nSELECT Category, AVG(Price) AS AveragePrice\nFROM [http_Products]\nGROUP BY Category\nORDER BY AveragePrice DESC;\n\n\n\n-- Customer Product Review Analysis\n\n-- Average Product Rating\n\nSELECT TOP 10 ProductID, AVG(Rating) AS AverageRating, COUNT(*) AS ReviewCount\nFROM [onprem_CusomerProductReview]\nGROUP BY ProductID\nORDER BY AverageRating DESC;\n\n-- Products with Most Reviews\n\nSELECT TOP 5 ProductID, COUNT(*) AS ReviewCount\nFROM [onprem_CusomerProductReview]\nGROUP BY ProductID\nORDER BY ReviewCount DESC;\n\n\n\n-- Top 5 States/Provinces by Number of Customers\n\nSELECT TOP 5 sp.StateName, COUNT(c.CustomerID) AS CustomerCount\nFROM [onprem_Customer] c\nJOIN [onprem_StateProvinceRolling] sp ON c.StateID = sp.StateID\nGROUP BY sp.StateName\nORDER BY CustomerCount DESC;\n\n\n\n-- Sales Order Analysis\n\n-- Total Revenue per Order\n\nSELECT TOP 10 soh.SalesOrderID, SUM(sod.LineTotal) AS TotalOrderRevenue\nFROM [azsqldb_SalesOrderHeader] soh\nJOIN [azsqldb_SalesOrderDetail] sod ON soh.SalesOrderID = sod.SalesOrderID\nGROUP BY soh.SalesOrderID\nORDER BY TotalOrderRevenue DESC;\n\n\n\n-- Product Quality Analysis\n\n-- List of Product Quality Types and the Number of Products\n\nSELECT pq.QualityType, COUNT(sp.PromotionProductID) AS ProductCount\nFROM [onprem_ProductQuality] pq\nJOIN [onprem_SellerProductPromotion] sp ON sp.ProductQualityID = pq.ProductQualityID\nGROUP BY pq.QualityType\nORDER BY ProductCount DESC;\n\n\n\n-- Promotion and Discount Analysis\n\n-- Highest Discount Promotions and Number of Products Involved\n\nSELECT TOP 5 p.PromotionID, p.PromotionDescription, AVG(p.DiscountPercentage) AS AvgDiscountPercentage, COUNT(sp.PromotionProductID) AS ProductCount\nFROM [onprem_Promotion] p\nJOIN [onprem_SellerProductPromotion] sp ON p.PromotionID = sp.PromotionID\nGROUP BY p.PromotionID, p.PromotionDescription\nORDER BY AvgDiscountPercentage DESC;\n\n\n\n-- Product Categories with Highest Sales Revenue\n\nSELECT TOP 5 p.ProductCategoryID, SUM(sod.LineTotal) AS TotalSalesRevenue\nFROM [azsqldb_Product] p\nJOIN [azsqldb_SalesOrderDetail] sod ON p.ProductID = sod.ProductID\nGROUP BY p.ProductCategoryID\nORDER BY TotalSalesRevenue DESC;\n\n\n",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "abcretail_serverless_sqldb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
