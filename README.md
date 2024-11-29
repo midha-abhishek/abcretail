@@ -160,4 +160,19 @@ This is what a part of the JSON document looks like:
 
 An ***Azure Data Factory*** resource was created in the ***Resource Group***, and linked to the ***GitHub*** Repository. The principles of `Continuous Integration/Continuous Development (CI/CD)` were followed throughout the development and testing process. For each stage of the development, testing and deployment, ***GitHub*** Repository branches were created and used. And each stage was tested thoroghly under separate environment and conditions.
 
+The ***Azure Data Factory*** was given access to the ***Azure Key Vault*** credentials through ***Key Vault*** `Access Policies`. At the same time, the access was created for ***AzureDatabricks*** for later use.
+
 All the linked services, integration runtime environment, datasets, data flow and pipelines were parameterized and created dynamically.
+
+Linked services for the following resources were created:
+
+- **Azure Key Vault**
+- **Azure Data Lake Gen2 Storage Account**
+- **HTTP API — JSON** (**GitHub**)
+- **Azure SQL Database**
+- **Microsoft SQL Server** (`Selfhosted` *Integration Runtime Environment*)
+
+While creating the Selfhosted ***Microsoft SQL Server*** linked service, an integration runtime was also created and linked to an on-premise ***Microsoft Integration Runtime***.
+
+A trigger was created (but not run) to run at the end of each day at 08:00 pm.
+
