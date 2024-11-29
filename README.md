@@ -2,7 +2,7 @@
 
 ## A Data Lake House Project
 
-# Technologies Involved
+## Technologies Involved
 
 - **GitHub**
 - **Microsoft Entra ID** with **Azure Default Directory**
