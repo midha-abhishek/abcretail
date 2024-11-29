@@ -113,6 +113,12 @@ The following `ER Diagram`  shows the overview schema of the on-premise databse:
 
 ***DBeaver*** was used to visualize the ER Diagram.
 
+### HTTP API — GitHup Replication Setup
+
+To replicate an HTTP API with softline product datasets, ***GitHub*** was used.
+
+Some sample JSON datasets were created and uploaded to the ***GitHub*** Repository, which were later accessed through their raw links. The information about the data has been provided above.
+
 ### Service Principal and Azure Key Vault Setup
 
 Created an **Azure Default Directory*** application using ***Microsoft Entra ID***, and then created a `client secret`.
@@ -136,5 +142,4 @@ Under ***IAM Access Control***, appropriate roles were assigned to the ***Azure 
 ### Azure SQL Database with SQL Server Setup
 
 An ***Azure SQL Database*** with ***SQL Server*** and a `sample` dataset was created. The password credentials were stored in the ***Azure Key Vault***
-
 
