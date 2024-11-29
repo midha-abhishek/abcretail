@@ -552,6 +552,58 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "data_cleaning",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "for_each_dataset",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "@pipeline().parameters.dbrks_data_cleaning_notebook",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "ls_dbrks_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"dbrks_workspace": {
+							"value": "@pipeline().parameters.dbrks_workspace",
+							"type": "Expression"
+						},
+						"key_vault": {
+							"value": "@pipeline().parameters.key_vault",
+							"type": "Expression"
+						},
+						"dbrks_token": {
+							"value": "@pipeline().parameters.dbrks_token",
+							"type": "Expression"
+						},
+						"cluster_version": {
+							"value": "@pipeline().parameters.cluster_version",
+							"type": "Expression"
+						},
+						"cluster_node_type": {
+							"value": "@pipeline().parameters.cluster_node_type",
+							"type": "Expression"
+						}
+					}
+				}
 			}
 		],
 		"parameters": {
@@ -628,6 +680,21 @@
 				"type": "string"
 			},
 			"lookup_folder": {
+				"type": "string"
+			},
+			"dbrks_workspace": {
+				"type": "string"
+			},
+			"dbrks_token": {
+				"type": "string"
+			},
+			"cluster_version": {
+				"type": "string"
+			},
+			"cluster_node_type": {
+				"type": "string"
+			},
+			"dbrks_data_cleaning_notebook": {
 				"type": "string"
 			}
 		},
