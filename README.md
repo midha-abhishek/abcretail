@@ -143,3 +143,16 @@ Under ***IAM Access Control***, appropriate roles were assigned to the ***Azure 
 
 An ***Azure SQL Database*** with ***SQL Server*** and a `sample` dataset was created. The password credentials were stored in the ***Azure Key Vault***
 
+### Lookup File Setup
+
+Since the ***Azure Data Factory*** pipelines would be parameterized for reusability and modular purposes, a `lookup` JSON document was created to include all the datasets with their sources.  The file was uploaded to the `metadata` container. The link to the sample file has been provided above.
+
+This is what a part of the JSON document looks like:
+
+```json
+{
+    "source": "onprem_sqlserver",
+    "filename": "Seller"
+},
+```
+
