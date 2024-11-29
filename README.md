@@ -7,7 +7,7 @@
 - **GitHub**
 - **Microsoft Entra ID** with:
 	- **Azure Default Directory** application for *`Service Principal`*
-- **Azure Key Vault**
+- **Azure Key Vault** for *`Service Principal`* as well as storing other secrets and credentials
 - **Azure SQL Database** with **Azure SQL Server**
 - **Microsoft SQL Server** with:
 	- **Microsoft SQL Server Management Studio**
