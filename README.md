@@ -80,7 +80,7 @@ Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough a
 
 ### On Premise Microsoft SQL Server Database Setup
 
-On a new sample database was create using ***Microsoft SQL Server Mangement Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
+On a new ***Microsoft SQL Server*** sample database was create using ***Microsoft SQL Server Mangement Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
 
 Here's what the sample code from the DDL looks like:
 
@@ -110,4 +110,24 @@ SELECT * FROM Customer;
 The following `ER Diagram`  shows the overview schema of the on-premise databse:
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/ERDiagram.png)
+
+***DBeaver*** was used to visualize the ER Diagram.
+
+### Service Principal and Azure Key Vault Setup
+
+Created an **Azure Default Directory*** application using ***Microsoft Entra ID***, and then created a `client secret`.
+
+Used ***Azure Key Vault*** in an ***Azure Resource Group*** to store the following credentials:
+- `Client ID`, also known as `Application ID`
+- `Directory ID`, also known as `Tenant ID`
+- `Client Secret`
+
+### Azure Data Lake Gen2 Storage Account Setup
+
+Created an ***Azure Data Lake Gen2 Storage Account*** with the following `Blob Storage Containers`:
+
+- metadata
+- raw
+- curated
+- staging
 
