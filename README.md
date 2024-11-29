@@ -4,10 +4,15 @@
 
 ## Technologies Involved
 
-- **GitHub**
+- **GitHub** for:
+	- *`Continuous-Integration/Continuous-Deployment (CI/CD)`*
+	- **HTTP API** Replication
+	- Important Project Documents
 - **Microsoft Entra ID** with:
 	- **Azure Default Directory** application for *`Service Principal`*
-- **Azure Key Vault** for *`Service Principal`* as well as storing other secrets and credentials
+- **Azure Key Vault** for:
+	- *`Service Principal`*
+	- Storing other secrets, passwords and credentials
 - **Azure SQL Database** with **Azure SQL Server**
 - **Microsoft SQL Server** with:
 	- **Microsoft SQL Server Management Studio**
@@ -19,6 +24,7 @@
 - **Azure Data Factory**
 - **Azure Databricks** with
 	- **PySpark**
+	- **Delta Tables**
 - **Azure Synapse Analytics** with
 	- *`Serverless Database Pool`*
 	- **Transact-SQL**
@@ -29,7 +35,7 @@ This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deploymen
 
 *`Dynamic`* links, triggers, datasets, data flows and other pipeline activities were used wherever permissible to avoid hard-coding. They were *`tested`* thoroughly with the required credentials.
 
-For security, *`Service Principal`* was used with the combination of ***Microsoft Entra ID*** with ***Azure Default Directry App*** and ***Azure Key Vault*** was used.
+For security, *`Service Principal`* was used with the combination of ***Microsoft Entra ID*** with ***Azure Default Directry App*** and ***Azure Key Vault*** was used. ***Azure Key Vault*** was also used to store other important secrets, passwords and credentials.
 
 The project involves data ingestion from multiple sources:
 
@@ -48,7 +54,14 @@ The project involves data ingestion from multiple sources:
 > - [footwear.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/footwear.json)
 > - [home_decor.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/home_decor.json)
 
+The *`raw`* data from the various sources is then stored onto the "raw" container of the ***Azure Data Lake Storage Gen2 Account*** using ***Azure Data Factory*** pipeline.
 
+**`Lookup`**, **`Foreach`** and **`Swith`** activities are used to automate the dynamic pipeline for each dataset and data source.
 
-The *`raw`* data from the various sources is then stored onto the "raw" container of the ***Azure Data Lake Storage Gen2 Account***.
+The JSON raw data are stored first as it is using the **`Copy data`** activity, and then as CSV using the `Data flow` to ensure that the nested objects and arrays are saved properly under their respective CSV headers.
 
+**`Copy data`** activity is also used for the raw data ingestion from the **Azure SQL Database*** and ***Microsoft SQL Server***.
+
+Using *`PySpark`* in an ***Azure Databricks*** cluster, the raw data is then cleaned and stored in *`Delta Tables`* onto the "curated" container of the Storage Account
+
+With another **Databricks** cluster, the Delta Tables are transformed to 
