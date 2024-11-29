@@ -133,4 +133,8 @@ Created an ***Azure Data Lake Gen2 Storage Account*** with the following `Blob S
 
 Under ***IAM Access Control***, appropriate roles were assigned to the ***Azure Default Directory*** application to give other resources (such as ***Azure Data Factory***, ***Azure Databricks*** and ***Azure Synapse Analytics***) required access through the `Service Principal`.
 
-### 
+### Azure SQL Database with SQL Server Setup
+
+An ***Azure SQL Database*** with ***SQL Server*** and a `sample` dataset was created. The password credentials were stored in the ***Azure Key Vault***
+
+
