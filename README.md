@@ -174,5 +174,5 @@ Linked services for the following resources were created:
 
 While creating the Selfhosted ***Microsoft SQL Server*** linked service, an integration runtime was also created and linked to an on-premise ***Microsoft Integration Runtime***.
 
-A trigger was created (but not started since no pipeline attached yet) to run at the end of each day at 08:00 pm.
+A trigger was created (but not started, since no pipeline attached yet) to run at the end of each day at 08:00 pm.
 
