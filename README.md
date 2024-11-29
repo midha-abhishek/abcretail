@@ -9,12 +9,15 @@
 - **Azure Key Vault**
 - **Azure SQL Database**
 - **Microsoft SQL Server**
+- **ANSI SQL**
 - **DBeaver**
 - **Microsoft Integration Runtime**
 - **Azure Data Lake Gen2 Storage Account**
 - **Azure Data Factory**
 - **Azure Databricks**
+- **PySpark**
 - **Azure Synapse Analytics**
+- **Transact-SQL**
 
 ## Abstract
 
