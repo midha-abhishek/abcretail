@@ -31,11 +31,11 @@
 
 ## Abstract
 
-This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deployment (CI/CD)`* throughout its course.
-
-*`Dynamic`* links, triggers, datasets, data flows and other pipeline activities were used wherever permissible to avoid hard-coding. They were *`tested`* thoroughly with the required credentials.
+This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deployment (CI/CD)`* throughout its course. For each major development changes, a new `dev` branch was created, and for final testing a separate `qa` branch was used with their own environment setup.
 
 For security, *`Service Principal`* was used with the combination of ***Microsoft Entra ID*** with ***Azure Default Directry App*** and ***Azure Key Vault*** was used. ***Azure Key Vault*** was also used to store other important secrets, passwords and credentials.
+
+*`Dynamic`* links, triggers, datasets, data flows and other pipeline activities were used wherever permissible to avoid hard-coding. They were *`tested`* thoroughly with the required credentials.
 
 The project involves data ingestion from multiple sources:
 
@@ -76,6 +76,34 @@ The two ***Azure Databricks*** clusters are incorporated into the ***Azure Data 
 
 Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough analysis was performed on the available data from the various sources.
 
-
 ## Methodology:
+
+### On Premise Microsoft SQL Server Database Setup
+
+On a new sample database was create using ***Microsoft SQL Server Mangement Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
+
+Here's what the sample code from the DDL looks like:
+
+```sql
+CREATE TABLE Customer (
+   CustomerID INT IDENTITY(1,1) PRIMARY KEY,
+   FirstName NVARCHAR(50),
+   LastName NVARCHAR(50),
+   Email NVARCHAR(100),
+   Phone NVARCHAR(15),
+   AddressLine1 NVARCHAR(200),
+   AddressLine2 NVARCHAR(200),
+   City NVARCHAR(100),
+   StateID INT FOREIGN KEY REFERENCES StateProvinceRolling(StateID),
+   PostalCode NVARCHAR(20),
+   CountryID INT FOREIGN KEY REFERENCES CountryRolling(CountryID)
+);
+
+INSERT INTO Customer (FirstName, LastName, Email, Phone, AddressLine1, AddressLine2, City, StateID, PostalCode, CountryID)
+VALUES
+   ('John', 'Doe', 'john.doe@example.com', '1234567890', '123 Main St', '', 'Toronto', 1, 'M5H 2N2', 1),
+   ('Jane', 'Smith', 'jane.smith@example.com', '9876543210', '456 Elm St', '', 'Los Angeles', 4, '90001', 2);
+
+SELECT * FROM Customer;
+```
 
