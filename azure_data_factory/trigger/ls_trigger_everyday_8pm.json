@@ -38,7 +38,7 @@
 					"dbrks_workspace": "adb-1495672711773585.5",
 					"dbrks_token": "databricks-token",
 					"cluster_version": "15.4.x-scala2.12",
-					"cluster_node_type": "Standard_DS3_V2",
+					"cluster_node_type": "Standard_DS3_v2",
 					"dbrks_data_cleaning_notebook": "/abcretail/data_cleaning"
 				}
 			}
