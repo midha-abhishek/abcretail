@@ -156,3 +156,8 @@ This is what a part of the JSON document looks like:
 },
 ```
 
+### Azure Data Factory Setup
+
+An ***Azure Data Factory*** resource was created in the ***Resource Group***, and linked to the ***GitHub*** Repository. The principles of `Continuous Integration/Continuous Development (CI/CD)` were followed throughout the development and testing process. For each stage of the development, testing and deployment, ***GitHub*** Repository branches were created and used. And each stage was tested thoroghly under separate environment and conditions.
+
+All the linked services, integration runtime environment, datasets, data flow and pipelines were parameterized and created dynamically.
