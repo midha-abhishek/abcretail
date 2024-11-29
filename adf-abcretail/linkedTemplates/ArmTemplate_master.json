@@ -1,0 +1,336 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-abcretail"
+		},
+		"ls_az_sqldb_abcretail_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().az_sqlserver}.database.windows.net"
+		},
+		"ls_az_sqldb_abcretail_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().az_sqldb}"
+		},
+		"ls_az_sqldb_abcretail_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "@{linkedService().az_sqlserver_username}"
+		},
+		"ls_dlsa_abcretail_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://@{linkedService().storage_account}.dfs.core.windows.net"
+		},
+		"ls_dlsa_abcretail_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "@{linkedService().directory_id}"
+		},
+		"ls_dlsa_abcretail_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "@{linkedService().client_id}"
+		},
+		"ls_http_github_softline_json_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/@{linkedService().github_username}/@{linkedService().github_repository}/refs/heads/@{linkedService().github_branch}/@{linkedService().github_data_folder}/"
+		},
+		"ls_kv_abcretail_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://@{linkedService().key_vault}.vault.azure.net"
+		},
+		"ls_onprem_sqlserver_abcretail_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().onprem_sqlserver}"
+		},
+		"ls_onprem_sqlserver_abcretail_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().onprem_sqldb}"
+		},
+		"ls_onprem_sqlserver_abcretail_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "@{linkedService().onprem_sqlserver_username}"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_storage_account": {
+			"type": "string",
+			"defaultValue": "dlsaabcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_id": {
+			"type": "string",
+			"defaultValue": "3a14b98e-3453-4ab1-ba4b-41c59c2b68aa"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_directory_id": {
+			"type": "string",
+			"defaultValue": "df25728e-a83d-4656-85e7-f7ab9a394f94"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_metadata_container": {
+			"type": "string",
+			"defaultValue": "metadata"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_filename": {
+			"type": "string",
+			"defaultValue": "lookup"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_username": {
+			"type": "string",
+			"defaultValue": "midha-abhishek"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_repository": {
+			"type": "string",
+			"defaultValue": "abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_branch": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_softline_data_folder": {
+			"type": "string",
+			"defaultValue": "softline_data"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_raw_container": {
+			"type": "string",
+			"defaultValue": "raw"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_folder": {
+			"type": "string",
+			"defaultValue": "http"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver": {
+			"type": "string",
+			"defaultValue": "sqlserver-abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb": {
+			"type": "string",
+			"defaultValue": "sqldb_abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver_username": {
+			"type": "string",
+			"defaultValue": "abhishekmidha"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb_schema": {
+			"type": "string",
+			"defaultValue": "SalesLT"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_azsqldb_folder": {
+			"type": "string",
+			"defaultValue": "azsqldb"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb": {
+			"type": "string",
+			"defaultValue": "onprem_abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver_username": {
+			"type": "string",
+			"defaultValue": "abhishek"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb_schema": {
+			"type": "string",
+			"defaultValue": "dbo"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onpremsqldb_folder": {
+			"type": "string",
+			"defaultValue": "onpremsqlserver"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_key_vault": {
+			"type": "string",
+			"defaultValue": "kv-abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_secret": {
+			"type": "string",
+			"defaultValue": "client-secret"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_csv_folder": {
+			"type": "string",
+			"defaultValue": "http/csv"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_folder": {
+			"type": "string",
+			"defaultValue": "lookup"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_workspace": {
+			"type": "string",
+			"defaultValue": "adb-1495672711773585.5"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_token": {
+			"type": "string",
+			"defaultValue": "databricks-token"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_version": {
+			"type": "string",
+			"defaultValue": "15.4.x-scala2.12"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_node_type": {
+			"type": "string",
+			"defaultValue": "Standard_DS3_v2"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_data_cleaning_notebook": {
+			"type": "string",
+			"defaultValue": "/abcretail/data_cleaning"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_etl_notebook": {
+			"type": "string",
+			"defaultValue": "/abcretail/etl_business_case"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "adf-abcretail_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_http_github_softline_json_properties_typeProperties_url": {
+						"value": "[parameters('ls_http_github_softline_json_properties_typeProperties_url')]"
+					},
+					"ls_kv_abcretail_properties_typeProperties_baseUrl": {
+						"value": "[parameters('ls_kv_abcretail_properties_typeProperties_baseUrl')]"
+					},
+					"ls_az_sqldb_abcretail_properties_typeProperties_server": {
+						"value": "[parameters('ls_az_sqldb_abcretail_properties_typeProperties_server')]"
+					},
+					"ls_az_sqldb_abcretail_properties_typeProperties_database": {
+						"value": "[parameters('ls_az_sqldb_abcretail_properties_typeProperties_database')]"
+					},
+					"ls_az_sqldb_abcretail_properties_typeProperties_userName": {
+						"value": "[parameters('ls_az_sqldb_abcretail_properties_typeProperties_userName')]"
+					},
+					"ls_dlsa_abcretail_properties_typeProperties_url": {
+						"value": "[parameters('ls_dlsa_abcretail_properties_typeProperties_url')]"
+					},
+					"ls_dlsa_abcretail_properties_typeProperties_tenant": {
+						"value": "[parameters('ls_dlsa_abcretail_properties_typeProperties_tenant')]"
+					},
+					"ls_dlsa_abcretail_properties_typeProperties_servicePrincipalId": {
+						"value": "[parameters('ls_dlsa_abcretail_properties_typeProperties_servicePrincipalId')]"
+					},
+					"ls_onprem_sqlserver_abcretail_properties_typeProperties_server": {
+						"value": "[parameters('ls_onprem_sqlserver_abcretail_properties_typeProperties_server')]"
+					},
+					"ls_onprem_sqlserver_abcretail_properties_typeProperties_database": {
+						"value": "[parameters('ls_onprem_sqlserver_abcretail_properties_typeProperties_database')]"
+					},
+					"ls_onprem_sqlserver_abcretail_properties_typeProperties_userName": {
+						"value": "[parameters('ls_onprem_sqlserver_abcretail_properties_typeProperties_userName')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_storage_account": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_storage_account')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_id": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_id')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_directory_id": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_directory_id')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_metadata_container": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_metadata_container')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_filename": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_filename')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_username": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_username')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_repository": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_repository')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_branch": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_branch')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_softline_data_folder": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_softline_data_folder')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_raw_container": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_raw_container')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_folder": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_folder')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver_username": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver_username')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb_schema": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb_schema')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_azsqldb_folder": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_azsqldb_folder')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver_username": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver_username')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb_schema": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb_schema')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onpremsqldb_folder": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onpremsqldb_folder')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_key_vault": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_key_vault')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_secret": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_secret')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_csv_folder": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_csv_folder')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_folder": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_folder')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_workspace": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_workspace')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_token": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_token')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_version": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_version')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_node_type": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_node_type')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_data_cleaning_notebook": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_data_cleaning_notebook')]"
+					},
+					"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_etl_notebook": {
+						"value": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_etl_notebook')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}

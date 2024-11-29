@@ -1,0 +1,1803 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "adf-abcretail"
+		},
+		"ls_az_sqldb_abcretail_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().az_sqlserver}.database.windows.net"
+		},
+		"ls_az_sqldb_abcretail_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().az_sqldb}"
+		},
+		"ls_az_sqldb_abcretail_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "@{linkedService().az_sqlserver_username}"
+		},
+		"ls_dlsa_abcretail_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://@{linkedService().storage_account}.dfs.core.windows.net"
+		},
+		"ls_dlsa_abcretail_properties_typeProperties_tenant": {
+			"type": "string",
+			"defaultValue": "@{linkedService().directory_id}"
+		},
+		"ls_dlsa_abcretail_properties_typeProperties_servicePrincipalId": {
+			"type": "string",
+			"defaultValue": "@{linkedService().client_id}"
+		},
+		"ls_http_github_softline_json_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/@{linkedService().github_username}/@{linkedService().github_repository}/refs/heads/@{linkedService().github_branch}/@{linkedService().github_data_folder}/"
+		},
+		"ls_kv_abcretail_properties_typeProperties_baseUrl": {
+			"type": "string",
+			"defaultValue": "https://@{linkedService().key_vault}.vault.azure.net"
+		},
+		"ls_onprem_sqlserver_abcretail_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "@{linkedService().onprem_sqlserver}"
+		},
+		"ls_onprem_sqlserver_abcretail_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().onprem_sqldb}"
+		},
+		"ls_onprem_sqlserver_abcretail_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "@{linkedService().onprem_sqlserver_username}"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_storage_account": {
+			"type": "string",
+			"defaultValue": "dlsaabcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_id": {
+			"type": "string",
+			"defaultValue": "3a14b98e-3453-4ab1-ba4b-41c59c2b68aa"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_directory_id": {
+			"type": "string",
+			"defaultValue": "df25728e-a83d-4656-85e7-f7ab9a394f94"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_metadata_container": {
+			"type": "string",
+			"defaultValue": "metadata"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_filename": {
+			"type": "string",
+			"defaultValue": "lookup"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_username": {
+			"type": "string",
+			"defaultValue": "midha-abhishek"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_repository": {
+			"type": "string",
+			"defaultValue": "abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_branch": {
+			"type": "string",
+			"defaultValue": "dev"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_softline_data_folder": {
+			"type": "string",
+			"defaultValue": "softline_data"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_raw_container": {
+			"type": "string",
+			"defaultValue": "raw"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_folder": {
+			"type": "string",
+			"defaultValue": "http"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver": {
+			"type": "string",
+			"defaultValue": "sqlserver-abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb": {
+			"type": "string",
+			"defaultValue": "sqldb_abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver_username": {
+			"type": "string",
+			"defaultValue": "abhishekmidha"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb_schema": {
+			"type": "string",
+			"defaultValue": "SalesLT"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_azsqldb_folder": {
+			"type": "string",
+			"defaultValue": "azsqldb"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver": {
+			"type": "string",
+			"defaultValue": "localhost"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb": {
+			"type": "string",
+			"defaultValue": "onprem_abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver_username": {
+			"type": "string",
+			"defaultValue": "abhishek"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb_schema": {
+			"type": "string",
+			"defaultValue": "dbo"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onpremsqldb_folder": {
+			"type": "string",
+			"defaultValue": "onpremsqlserver"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_key_vault": {
+			"type": "string",
+			"defaultValue": "kv-abcretail"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_secret": {
+			"type": "string",
+			"defaultValue": "client-secret"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_csv_folder": {
+			"type": "string",
+			"defaultValue": "http/csv"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_folder": {
+			"type": "string",
+			"defaultValue": "lookup"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_workspace": {
+			"type": "string",
+			"defaultValue": "adb-1495672711773585.5"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_token": {
+			"type": "string",
+			"defaultValue": "databricks-token"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_version": {
+			"type": "string",
+			"defaultValue": "15.4.x-scala2.12"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_node_type": {
+			"type": "string",
+			"defaultValue": "Standard_DS3_v2"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_data_cleaning_notebook": {
+			"type": "string",
+			"defaultValue": "/abcretail/data_cleaning"
+		},
+		"ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_etl_notebook": {
+			"type": "string",
+			"defaultValue": "/abcretail/etl_business_case"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/abc_retail_data_lake_house_pipeline')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "lookup_datasets",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "JsonSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "JsonReadSettings"
+								}
+							},
+							"dataset": {
+								"referenceName": "ds_dlsa_json",
+								"type": "DatasetReference",
+								"parameters": {
+									"storage_account": {
+										"value": "@pipeline().parameters.storage_account",
+										"type": "Expression"
+									},
+									"client_id": {
+										"value": "@pipeline().parameters.client_id",
+										"type": "Expression"
+									},
+									"directory_id": {
+										"value": "@pipeline().parameters.directory_id",
+										"type": "Expression"
+									},
+									"container_json": {
+										"value": "@pipeline().parameters.metadata_container",
+										"type": "Expression"
+									},
+									"filename": {
+										"value": "@pipeline().parameters.lookup_filename",
+										"type": "Expression"
+									},
+									"key_vault": {
+										"value": "@pipeline().parameters.key_vault",
+										"type": "Expression"
+									},
+									"client_secret": {
+										"value": "@pipeline().parameters.client_secret",
+										"type": "Expression"
+									},
+									"folder_json": {
+										"value": "@pipeline().parameters.lookup_folder",
+										"type": "Expression"
+									}
+								}
+							},
+							"firstRowOnly": false
+						}
+					},
+					{
+						"name": "for_each_dataset",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "lookup_datasets",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('lookup_datasets').output.value",
+								"type": "Expression"
+							},
+							"isSequential": false,
+							"activities": [
+								{
+									"name": "switch_dataset_source_cases",
+									"type": "Switch",
+									"dependsOn": [],
+									"userProperties": [],
+									"typeProperties": {
+										"on": {
+											"value": "@item().source",
+											"type": "Expression"
+										},
+										"cases": [
+											{
+												"value": "http",
+												"activities": [
+													{
+														"name": "http_to_raw",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"source": {
+																"type": "JsonSource",
+																"storeSettings": {
+																	"type": "HttpReadSettings",
+																	"requestMethod": "GET"
+																},
+																"formatSettings": {
+																	"type": "JsonReadSettings"
+																}
+															},
+															"sink": {
+																"type": "JsonSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings"
+																},
+																"formatSettings": {
+																	"type": "JsonWriteSettings"
+																}
+															},
+															"enableStaging": false
+														},
+														"inputs": [
+															{
+																"referenceName": "ds_http_github_softline_json",
+																"type": "DatasetReference",
+																"parameters": {
+																	"softline_github_username": {
+																		"value": "@pipeline().parameters.github_username",
+																		"type": "Expression"
+																	},
+																	"softline_github_repository": {
+																		"value": "@pipeline().parameters.github_repository",
+																		"type": "Expression"
+																	},
+																	"softline_github_branch": {
+																		"value": "@pipeline().parameters.github_branch",
+																		"type": "Expression"
+																	},
+																	"softline_github_data_folder": {
+																		"value": "@pipeline().parameters.github_softline_data_folder",
+																		"type": "Expression"
+																	},
+																	"softline_github_filename": {
+																		"value": "@item().filename",
+																		"type": "Expression"
+																	}
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "ds_dlsa_json",
+																"type": "DatasetReference",
+																"parameters": {
+																	"storage_account": {
+																		"value": "@pipeline().parameters.storage_account",
+																		"type": "Expression"
+																	},
+																	"client_id": {
+																		"value": "@pipeline().parameters.client_id",
+																		"type": "Expression"
+																	},
+																	"directory_id": {
+																		"value": "@pipeline().parameters.directory_id",
+																		"type": "Expression"
+																	},
+																	"container_json": {
+																		"value": "@pipeline().parameters.raw_container",
+																		"type": "Expression"
+																	},
+																	"filename": {
+																		"value": "@item().filename",
+																		"type": "Expression"
+																	},
+																	"key_vault": {
+																		"value": "@pipeline().parameters.key_vault",
+																		"type": "Expression"
+																	},
+																	"client_secret": {
+																		"value": "@pipeline().parameters.client_secret",
+																		"type": "Expression"
+																	},
+																	"folder_json": {
+																		"value": "@pipeline().parameters.http_folder",
+																		"type": "Expression"
+																	}
+																}
+															}
+														]
+													},
+													{
+														"name": "raw_to_csv",
+														"type": "ExecuteDataFlow",
+														"dependsOn": [
+															{
+																"activity": "http_to_raw",
+																"dependencyConditions": [
+																	"Succeeded"
+																]
+															}
+														],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"dataflow": {
+																"referenceName": "json_to_csv_unflattened",
+																"type": "DataFlowReference",
+																"parameters": {},
+																"datasetParameters": {
+																	"rawJSON": {
+																		"storage_account": {
+																			"value": "@pipeline().parameters.storage_account",
+																			"type": "Expression"
+																		},
+																		"client_id": {
+																			"value": "@pipeline().parameters.client_id",
+																			"type": "Expression"
+																		},
+																		"directory_id": {
+																			"value": "@pipeline().parameters.directory_id",
+																			"type": "Expression"
+																		},
+																		"container_json": {
+																			"value": "@pipeline().parameters.raw_container",
+																			"type": "Expression"
+																		},
+																		"filename": {
+																			"value": "@item().filename",
+																			"type": "Expression"
+																		},
+																		"key_vault": {
+																			"value": "@pipeline().parameters.key_vault",
+																			"type": "Expression"
+																		},
+																		"client_secret": {
+																			"value": "@pipeline().parameters.client_secret",
+																			"type": "Expression"
+																		},
+																		"folder_json": {
+																			"value": "@pipeline().parameters.http_folder",
+																			"type": "Expression"
+																		}
+																	},
+																	"rawCSV": {
+																		"storage_account": {
+																			"value": "@pipeline().parameters.storage_account",
+																			"type": "Expression"
+																		},
+																		"client_id": {
+																			"value": "@pipeline().parameters.client_id",
+																			"type": "Expression"
+																		},
+																		"directory_id": {
+																			"value": "@pipeline().parameters.directory_id",
+																			"type": "Expression"
+																		},
+																		"key_vault": {
+																			"value": "@pipeline().parameters.key_vault",
+																			"type": "Expression"
+																		},
+																		"client_secret": {
+																			"value": "@pipeline().parameters.client_secret",
+																			"type": "Expression"
+																		},
+																		"container_csv": {
+																			"value": "@pipeline().parameters.raw_container",
+																			"type": "Expression"
+																		},
+																		"folder_csv": {
+																			"value": "@concat(pipeline().parameters.http_csv_folder, '/', item().filename)",
+																			"type": "Expression"
+																		},
+																		"filename": {
+																			"value": "@item().filename",
+																			"type": "Expression"
+																		}
+																	}
+																}
+															},
+															"staging": {},
+															"compute": {
+																"coreCount": 8,
+																"computeType": "General"
+															},
+															"traceLevel": "Fine"
+														}
+													}
+												]
+											},
+											{
+												"value": "az_sql_db",
+												"activities": [
+													{
+														"name": "azsqldb_to_raw",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"source": {
+																"type": "AzureSqlSource",
+																"queryTimeout": "02:00:00",
+																"partitionOption": "None"
+															},
+															"sink": {
+																"type": "ParquetSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings"
+																},
+																"formatSettings": {
+																	"type": "ParquetWriteSettings"
+																}
+															},
+															"enableStaging": false,
+															"translator": {
+																"type": "TabularTranslator",
+																"typeConversion": true,
+																"typeConversionSettings": {
+																	"allowDataTruncation": true,
+																	"treatBooleanAsNumber": false
+																}
+															}
+														},
+														"inputs": [
+															{
+																"referenceName": "ds_az_sqldb",
+																"type": "DatasetReference",
+																"parameters": {
+																	"az_sqlserver": {
+																		"value": "@pipeline().parameters.az_sqlserver",
+																		"type": "Expression"
+																	},
+																	"az_sqldb": {
+																		"value": "@pipeline().parameters.az_sqldb",
+																		"type": "Expression"
+																	},
+																	"az_sqlserver_username": {
+																		"value": "@pipeline().parameters.az_sqlserver_username",
+																		"type": "Expression"
+																	},
+																	"az_sqldb_schema": {
+																		"value": "@pipeline().parameters.az_sqldb_schema",
+																		"type": "Expression"
+																	},
+																	"az_sqldb_table_name": {
+																		"value": "@item().filename",
+																		"type": "Expression"
+																	},
+																	"key_vault": {
+																		"value": "@pipeline().parameters.key_vault",
+																		"type": "Expression"
+																	}
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "ds_dlsa_parquet",
+																"type": "DatasetReference",
+																"parameters": {
+																	"storage_account": {
+																		"value": "@pipeline().parameters.storage_account",
+																		"type": "Expression"
+																	},
+																	"client_id": {
+																		"value": "@pipeline().parameters.client_id",
+																		"type": "Expression"
+																	},
+																	"directory_id": {
+																		"value": "@pipeline().parameters.directory_id",
+																		"type": "Expression"
+																	},
+																	"container_parquet": {
+																		"value": "@pipeline().parameters.raw_container",
+																		"type": "Expression"
+																	},
+																	"folder_parquet": {
+																		"value": "@pipeline().parameters.azsqldb_folder",
+																		"type": "Expression"
+																	},
+																	"filename": {
+																		"value": "@item().filename",
+																		"type": "Expression"
+																	},
+																	"key_vault": {
+																		"value": "@pipeline().parameters.key_vault",
+																		"type": "Expression"
+																	},
+																	"client_secret": {
+																		"value": "@pipeline().parameters.client_secret",
+																		"type": "Expression"
+																	}
+																}
+															}
+														]
+													}
+												]
+											},
+											{
+												"value": "onprem_sqlserver",
+												"activities": [
+													{
+														"name": "onpremsqlserver_to_raw",
+														"type": "Copy",
+														"dependsOn": [],
+														"policy": {
+															"timeout": "0.12:00:00",
+															"retry": 0,
+															"retryIntervalInSeconds": 30,
+															"secureOutput": false,
+															"secureInput": false
+														},
+														"userProperties": [],
+														"typeProperties": {
+															"source": {
+																"type": "SqlServerSource",
+																"queryTimeout": "02:00:00",
+																"partitionOption": "None"
+															},
+															"sink": {
+																"type": "ParquetSink",
+																"storeSettings": {
+																	"type": "AzureBlobFSWriteSettings"
+																},
+																"formatSettings": {
+																	"type": "ParquetWriteSettings"
+																}
+															},
+															"enableStaging": false,
+															"translator": {
+																"type": "TabularTranslator",
+																"typeConversion": true,
+																"typeConversionSettings": {
+																	"allowDataTruncation": true,
+																	"treatBooleanAsNumber": false
+																}
+															}
+														},
+														"inputs": [
+															{
+																"referenceName": "ds_onprem_sqlserver",
+																"type": "DatasetReference",
+																"parameters": {
+																	"onprem_sqlserver": {
+																		"value": "@pipeline().parameters.onprem_sqlserver",
+																		"type": "Expression"
+																	},
+																	"onprem_sqldb": {
+																		"value": "@pipeline().parameters.onprem_sqldb",
+																		"type": "Expression"
+																	},
+																	"onprem_sqlserver_username": {
+																		"value": "@pipeline().parameters.onprem_sqlserver_username",
+																		"type": "Expression"
+																	},
+																	"onprem_sqldb_schema": {
+																		"value": "@pipeline().parameters.onprem_sqldb_schema",
+																		"type": "Expression"
+																	},
+																	"onprem_sqldb_table_name": {
+																		"value": "@item().filename",
+																		"type": "Expression"
+																	},
+																	"key_vault": {
+																		"value": "@pipeline().parameters.key_vault",
+																		"type": "Expression"
+																	}
+																}
+															}
+														],
+														"outputs": [
+															{
+																"referenceName": "ds_dlsa_parquet",
+																"type": "DatasetReference",
+																"parameters": {
+																	"storage_account": {
+																		"value": "@pipeline().parameters.storage_account",
+																		"type": "Expression"
+																	},
+																	"client_id": {
+																		"value": "@pipeline().parameters.client_id",
+																		"type": "Expression"
+																	},
+																	"directory_id": {
+																		"value": "@pipeline().parameters.directory_id",
+																		"type": "Expression"
+																	},
+																	"container_parquet": {
+																		"value": "@pipeline().parameters.raw_container",
+																		"type": "Expression"
+																	},
+																	"folder_parquet": {
+																		"value": "@pipeline().parameters.onpremsqldb_folder",
+																		"type": "Expression"
+																	},
+																	"filename": {
+																		"value": "@item().filename",
+																		"type": "Expression"
+																	},
+																	"key_vault": {
+																		"value": "@pipeline().parameters.key_vault",
+																		"type": "Expression"
+																	},
+																	"client_secret": {
+																		"value": "@pipeline().parameters.client_secret",
+																		"type": "Expression"
+																	}
+																}
+															}
+														]
+													}
+												]
+											}
+										],
+										"defaultActivities": [
+											{
+												"name": "default_wait_1second",
+												"type": "Wait",
+												"dependsOn": [],
+												"userProperties": [],
+												"typeProperties": {
+													"waitTimeInSeconds": 1
+												}
+											}
+										]
+									}
+								}
+							]
+						}
+					},
+					{
+						"name": "data_cleaning",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "for_each_dataset",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": {
+								"value": "@pipeline().parameters.dbrks_data_cleaning_notebook",
+								"type": "Expression"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "ls_dbrks_abcretail",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"dbrks_workspace": {
+									"value": "@pipeline().parameters.dbrks_workspace",
+									"type": "Expression"
+								},
+								"key_vault": {
+									"value": "@pipeline().parameters.key_vault",
+									"type": "Expression"
+								},
+								"dbrks_token": {
+									"value": "@pipeline().parameters.dbrks_token",
+									"type": "Expression"
+								},
+								"cluster_version": {
+									"value": "@pipeline().parameters.cluster_version",
+									"type": "Expression"
+								},
+								"cluster_node_type": {
+									"value": "@pipeline().parameters.cluster_node_type",
+									"type": "Expression"
+								}
+							}
+						}
+					},
+					{
+						"name": "etl_business_case",
+						"type": "DatabricksNotebook",
+						"dependsOn": [
+							{
+								"activity": "data_cleaning",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"notebookPath": {
+								"value": "@pipeline().parameters.dbrks_etl_notebook",
+								"type": "Expression"
+							}
+						},
+						"linkedServiceName": {
+							"referenceName": "ls_dbrks_abcretail",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"dbrks_workspace": {
+									"value": "@pipeline().parameters.dbrks_workspace",
+									"type": "Expression"
+								},
+								"key_vault": {
+									"value": "@pipeline().parameters.key_vault",
+									"type": "Expression"
+								},
+								"dbrks_token": {
+									"value": "@pipeline().parameters.dbrks_token",
+									"type": "Expression"
+								},
+								"cluster_version": {
+									"value": "@pipeline().parameters.cluster_version",
+									"type": "Expression"
+								},
+								"cluster_node_type": {
+									"value": "@pipeline().parameters.cluster_node_type",
+									"type": "Expression"
+								}
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"parameters": {
+					"storage_account": {
+						"type": "string"
+					},
+					"client_id": {
+						"type": "string"
+					},
+					"directory_id": {
+						"type": "string"
+					},
+					"metadata_container": {
+						"type": "string"
+					},
+					"lookup_filename": {
+						"type": "string"
+					},
+					"github_username": {
+						"type": "string"
+					},
+					"github_repository": {
+						"type": "string"
+					},
+					"github_branch": {
+						"type": "string"
+					},
+					"github_softline_data_folder": {
+						"type": "string"
+					},
+					"raw_container": {
+						"type": "string"
+					},
+					"http_folder": {
+						"type": "string"
+					},
+					"az_sqlserver": {
+						"type": "string"
+					},
+					"az_sqldb": {
+						"type": "string"
+					},
+					"az_sqlserver_username": {
+						"type": "string"
+					},
+					"az_sqldb_schema": {
+						"type": "string"
+					},
+					"azsqldb_folder": {
+						"type": "string"
+					},
+					"onprem_sqlserver": {
+						"type": "string"
+					},
+					"onprem_sqldb": {
+						"type": "string"
+					},
+					"onprem_sqlserver_username": {
+						"type": "string"
+					},
+					"onprem_sqldb_schema": {
+						"type": "string"
+					},
+					"onpremsqldb_folder": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					},
+					"client_secret": {
+						"type": "string"
+					},
+					"http_csv_folder": {
+						"type": "string"
+					},
+					"lookup_folder": {
+						"type": "string"
+					},
+					"dbrks_workspace": {
+						"type": "string"
+					},
+					"dbrks_token": {
+						"type": "string"
+					},
+					"cluster_version": {
+						"type": "string"
+					},
+					"cluster_node_type": {
+						"type": "string"
+					},
+					"dbrks_data_cleaning_notebook": {
+						"type": "string"
+					},
+					"dbrks_etl_notebook": {
+						"type": "string"
+					}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_dlsa_json')]",
+				"[concat(variables('factoryId'), '/linkedServices/ls_dbrks_abcretail')]",
+				"[concat(variables('factoryId'), '/datasets/ds_http_github_softline_json')]",
+				"[concat(variables('factoryId'), '/dataflows/json_to_csv_unflattened')]",
+				"[concat(variables('factoryId'), '/datasets/ds_az_sqldb')]",
+				"[concat(variables('factoryId'), '/datasets/ds_dlsa_parquet')]",
+				"[concat(variables('factoryId'), '/datasets/ds_onprem_sqlserver')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_az_sqldb')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_az_sqldb_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"az_sqlserver": {
+							"value": "@dataset().az_sqlserver",
+							"type": "Expression"
+						},
+						"az_sqldb": {
+							"value": "@dataset().az_sqldb",
+							"type": "Expression"
+						},
+						"az_sqlserver_username": {
+							"value": "@dataset().az_sqlserver_username",
+							"type": "Expression"
+						},
+						"key_vault": {
+							"value": "@dataset().key_vault",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"az_sqlserver": {
+						"type": "string"
+					},
+					"az_sqldb": {
+						"type": "string"
+					},
+					"az_sqlserver_username": {
+						"type": "string"
+					},
+					"az_sqldb_schema": {
+						"type": "string"
+					},
+					"az_sqldb_table_name": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": {
+						"value": "@dataset().az_sqldb_schema",
+						"type": "Expression"
+					},
+					"table": {
+						"value": "@dataset().az_sqldb_table_name",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_az_sqldb_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dlsa_csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_dlsa_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"storage_account": {
+							"value": "@dataset().storage_account",
+							"type": "Expression"
+						},
+						"client_id": {
+							"value": "@dataset().client_id",
+							"type": "Expression"
+						},
+						"directory_id": {
+							"value": "@dataset().directory_id",
+							"type": "Expression"
+						},
+						"key_vault": {
+							"value": "@dataset().key_vault",
+							"type": "Expression"
+						},
+						"client_secret": {
+							"value": "@dataset().client_secret",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"storage_account": {
+						"type": "string"
+					},
+					"client_id": {
+						"type": "string"
+					},
+					"directory_id": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					},
+					"client_secret": {
+						"type": "string"
+					},
+					"container_csv": {
+						"type": "string"
+					},
+					"folder_csv": {
+						"type": "string"
+					},
+					"filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat(dataset().filename, '.csv')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().folder_csv",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().container_csv",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_dlsa_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dlsa_json')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_dlsa_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"storage_account": {
+							"value": "@dataset().storage_account",
+							"type": "Expression"
+						},
+						"client_id": {
+							"value": "@dataset().client_id",
+							"type": "Expression"
+						},
+						"directory_id": {
+							"value": "@dataset().directory_id",
+							"type": "Expression"
+						},
+						"key_vault": {
+							"value": "@dataset().key_vault",
+							"type": "Expression"
+						},
+						"client_secret": {
+							"value": "@dataset().client_secret",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"storage_account": {
+						"type": "string"
+					},
+					"client_id": {
+						"type": "string"
+					},
+					"directory_id": {
+						"type": "string"
+					},
+					"container_json": {
+						"type": "string"
+					},
+					"filename": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					},
+					"client_secret": {
+						"type": "string"
+					},
+					"folder_json": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat(dataset().filename, '.json')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().folder_json",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().container_json",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {
+					"type": "object",
+					"properties": {
+						"source": {
+							"type": "string"
+						},
+						"filename": {
+							"type": "string"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_dlsa_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_dlsa_parquet')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_dlsa_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"storage_account": {
+							"value": "@dataset().storage_account",
+							"type": "Expression"
+						},
+						"client_id": {
+							"value": "@dataset().client_id",
+							"type": "Expression"
+						},
+						"directory_id": {
+							"value": "@dataset().directory_id",
+							"type": "Expression"
+						},
+						"key_vault": {
+							"value": "@dataset().key_vault",
+							"type": "Expression"
+						},
+						"client_secret": {
+							"value": "@dataset().client_secret",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"storage_account": {
+						"type": "string"
+					},
+					"client_id": {
+						"type": "string"
+					},
+					"directory_id": {
+						"type": "string"
+					},
+					"container_parquet": {
+						"type": "string"
+					},
+					"folder_parquet": {
+						"type": "string"
+					},
+					"filename": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					},
+					"client_secret": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Parquet",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": {
+							"value": "@concat(dataset().filename, '.parquet')",
+							"type": "Expression"
+						},
+						"folderPath": {
+							"value": "@dataset().folder_parquet",
+							"type": "Expression"
+						},
+						"fileSystem": {
+							"value": "@dataset().container_parquet",
+							"type": "Expression"
+						}
+					},
+					"compressionCodec": "snappy"
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_dlsa_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_http_github_softline_json')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_http_github_softline_json",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"github_username": {
+							"value": "@dataset().softline_github_username",
+							"type": "Expression"
+						},
+						"github_repository": {
+							"value": "@dataset().softline_github_repository",
+							"type": "Expression"
+						},
+						"github_branch": {
+							"value": "@dataset().softline_github_branch",
+							"type": "Expression"
+						},
+						"github_data_folder": {
+							"value": "@dataset().softline_github_data_folder",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"softline_github_username": {
+						"type": "string"
+					},
+					"softline_github_repository": {
+						"type": "string"
+					},
+					"softline_github_branch": {
+						"type": "string"
+					},
+					"softline_github_data_folder": {
+						"type": "string"
+					},
+					"softline_github_filename": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "Json",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation",
+						"relativeUrl": {
+							"value": "@concat(dataset().softline_github_filename, '.json')",
+							"type": "Expression"
+						}
+					}
+				},
+				"schema": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_http_github_softline_json')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_onprem_sqlserver')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_onprem_sqlserver_abcretail",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"onprem_sqlserver": {
+							"value": "@dataset().onprem_sqlserver",
+							"type": "Expression"
+						},
+						"onprem_sqldb": {
+							"value": "@dataset().onprem_sqldb",
+							"type": "Expression"
+						},
+						"onprem_sqlserver_username": {
+							"value": "@dataset().onprem_sqlserver_username",
+							"type": "Expression"
+						},
+						"key_vault": {
+							"value": "@dataset().key_vault",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"onprem_sqlserver": {
+						"type": "string"
+					},
+					"onprem_sqldb": {
+						"type": "string"
+					},
+					"onprem_sqlserver_username": {
+						"type": "string"
+					},
+					"onprem_sqldb_schema": {
+						"type": "string"
+					},
+					"onprem_sqldb_table_name": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {
+					"schema": {
+						"value": "@dataset().onprem_sqldb_schema",
+						"type": "Expression"
+					},
+					"table": {
+						"value": "@dataset().onprem_sqldb_table_name",
+						"type": "Expression"
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_onprem_sqlserver_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_az_sqldb_abcretail')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"az_sqlserver": {
+						"type": "string"
+					},
+					"az_sqldb": {
+						"type": "string"
+					},
+					"az_sqlserver_username": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureSqlDatabase",
+				"typeProperties": {
+					"server": "[parameters('ls_az_sqldb_abcretail_properties_typeProperties_server')]",
+					"database": "[parameters('ls_az_sqldb_abcretail_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('ls_az_sqldb_abcretail_properties_typeProperties_userName')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ls_kv_abcretail",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"key_vault": {
+									"value": "@linkedService().key_vault",
+									"type": "Expression"
+								}
+							}
+						},
+						"secretName": {
+							"value": "azure-sql-server-password",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_kv_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_dbrks_abcretail')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"dbrks_workspace": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					},
+					"dbrks_token": {
+						"type": "string"
+					},
+					"cluster_version": {
+						"type": "string"
+					},
+					"cluster_node_type": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureDatabricks",
+				"typeProperties": {
+					"domain": "https://@{linkedService().dbrks_workspace}.azuredatabricks.net",
+					"accessToken": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ls_kv_abcretail",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"key_vault": {
+									"value": "@linkedService().key_vault",
+									"type": "Expression"
+								}
+							}
+						},
+						"secretName": {
+							"value": "@linkedService().dbrks_token",
+							"type": "Expression"
+						}
+					},
+					"newClusterNodeType": "@linkedService().cluster_node_type",
+					"newClusterNumOfWorker": "1",
+					"newClusterSparkEnvVars": {
+						"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+					},
+					"newClusterVersion": "@linkedService().cluster_version",
+					"clusterOption": "Fixed",
+					"newClusterInitScripts": []
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_kv_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_dlsa_abcretail')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"storage_account": {
+						"type": "string"
+					},
+					"client_id": {
+						"type": "string"
+					},
+					"directory_id": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					},
+					"client_secret": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('ls_dlsa_abcretail_properties_typeProperties_url')]",
+					"tenant": "[parameters('ls_dlsa_abcretail_properties_typeProperties_tenant')]",
+					"servicePrincipalId": "[parameters('ls_dlsa_abcretail_properties_typeProperties_servicePrincipalId')]",
+					"servicePrincipalCredentialType": "ServicePrincipalKey",
+					"servicePrincipalCredential": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ls_kv_abcretail",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"key_vault": {
+									"value": "@linkedService().key_vault",
+									"type": "Expression"
+								}
+							}
+						},
+						"secretName": {
+							"value": "@linkedService().client_secret",
+							"type": "Expression"
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_kv_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_http_github_softline_json')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"github_username": {
+						"type": "string"
+					},
+					"github_repository": {
+						"type": "string"
+					},
+					"github_branch": {
+						"type": "string"
+					},
+					"github_data_folder": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "HttpServer",
+				"typeProperties": {
+					"url": "[parameters('ls_http_github_softline_json_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_kv_abcretail')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"key_vault": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "AzureKeyVault",
+				"typeProperties": {
+					"baseUrl": "[parameters('ls_kv_abcretail_properties_typeProperties_baseUrl')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_onprem_sqlserver_abcretail')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"parameters": {
+					"onprem_sqlserver": {
+						"type": "string"
+					},
+					"onprem_sqldb": {
+						"type": "string"
+					},
+					"onprem_sqlserver_username": {
+						"type": "string"
+					},
+					"key_vault": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "SqlServer",
+				"typeProperties": {
+					"server": "[parameters('ls_onprem_sqlserver_abcretail_properties_typeProperties_server')]",
+					"database": "[parameters('ls_onprem_sqlserver_abcretail_properties_typeProperties_database')]",
+					"encrypt": "mandatory",
+					"trustServerCertificate": false,
+					"authenticationType": "SQL",
+					"userName": "[parameters('ls_onprem_sqlserver_abcretail_properties_typeProperties_userName')]",
+					"password": {
+						"type": "AzureKeyVaultSecret",
+						"store": {
+							"referenceName": "ls_kv_abcretail",
+							"type": "LinkedServiceReference",
+							"parameters": {
+								"key_vault": {
+									"value": "@linkedService().key_vault",
+									"type": "Expression"
+								}
+							}
+						},
+						"secretName": {
+							"value": "onprem-sqlserver-password",
+							"type": "Expression"
+						}
+					}
+				},
+				"connectVia": {
+					"referenceName": "onprem-sqlserver-abcretail-integration-runtime",
+					"type": "IntegrationRuntimeReference"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/integrationRuntimes/onprem-sqlserver-abcretail-integration-runtime')]",
+				"[concat(variables('factoryId'), '/linkedServices/ls_kv_abcretail')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ls_trigger_everyday_8pm')]",
+			"type": "Microsoft.DataFactory/factories/triggers",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "abc_retail_data_lake_house_pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"storage_account": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_storage_account')]",
+							"client_id": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_id')]",
+							"directory_id": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_directory_id')]",
+							"metadata_container": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_metadata_container')]",
+							"lookup_filename": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_filename')]",
+							"github_username": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_username')]",
+							"github_repository": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_repository')]",
+							"github_branch": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_branch')]",
+							"github_softline_data_folder": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_github_softline_data_folder')]",
+							"raw_container": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_raw_container')]",
+							"http_folder": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_folder')]",
+							"az_sqlserver": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver')]",
+							"az_sqldb": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb')]",
+							"az_sqlserver_username": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqlserver_username')]",
+							"az_sqldb_schema": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_az_sqldb_schema')]",
+							"azsqldb_folder": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_azsqldb_folder')]",
+							"onprem_sqlserver": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver')]",
+							"onprem_sqldb": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb')]",
+							"onprem_sqlserver_username": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqlserver_username')]",
+							"onprem_sqldb_schema": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onprem_sqldb_schema')]",
+							"onpremsqldb_folder": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_onpremsqldb_folder')]",
+							"key_vault": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_key_vault')]",
+							"client_secret": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_client_secret')]",
+							"http_csv_folder": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_http_csv_folder')]",
+							"lookup_folder": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_lookup_folder')]",
+							"dbrks_workspace": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_workspace')]",
+							"dbrks_token": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_token')]",
+							"cluster_version": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_version')]",
+							"cluster_node_type": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_cluster_node_type')]",
+							"dbrks_data_cleaning_notebook": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_data_cleaning_notebook')]",
+							"dbrks_etl_notebook": "[parameters('ls_trigger_everyday_8pm_properties_abc_retail_data_lake_house_pipeline_parameters_dbrks_etl_notebook')]"
+						}
+					}
+				],
+				"type": "ScheduleTrigger",
+				"typeProperties": {
+					"recurrence": {
+						"frequency": "Day",
+						"interval": 1,
+						"startTime": "2024-11-27T00:00:00",
+						"timeZone": "Eastern Standard Time",
+						"schedule": {
+							"minutes": [
+								0
+							],
+							"hours": [
+								20
+							]
+						}
+					}
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/abc_retail_data_lake_house_pipeline')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/onprem-sqlserver-abcretail-integration-runtime')]",
+			"type": "Microsoft.DataFactory/factories/integrationRuntimes",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "SelfHosted",
+				"typeProperties": {}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/json_to_csv_unflattened')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "ds_dlsa_json",
+								"type": "DatasetReference"
+							},
+							"name": "rawJSON"
+						}
+					],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ds_dlsa_csv",
+								"type": "DatasetReference"
+							},
+							"name": "rawCSV"
+						}
+					],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          source as string,",
+						"          filename as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false,",
+						"     documentForm: 'arrayOfDocuments') ~> rawJSON",
+						"rawJSON sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     umask: 0022,",
+						"     preCommands: [],",
+						"     postCommands: [],",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> rawCSV"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/ds_dlsa_json')]",
+				"[concat(variables('factoryId'), '/datasets/ds_dlsa_csv')]"
+			]
+		}
+	]
+}
