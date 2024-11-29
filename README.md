@@ -64,4 +64,9 @@ The JSON raw data are stored first as it is using the **`Copy data`** activity, 
 
 Using *`PySpark`* in an ***Azure Databricks*** cluster, the raw data is then cleaned and stored in *`Delta Tables`* onto the "curated" container of the Storage Account
 
-With another **Databricks** cluster, the Delta Tables are transformed to 
+With another **Databricks** cluster, ***`ETL`*** is performed on the Delta Tables (as per business case scenario). The transformed Delta Tables are stored onto the "staging" container.
+
+The two ***Azure Databricks*** clusters are incorporated into the ***Azure Data Factory*** pipeline, and the parameterized pipeline is again automated using a **`trigger`** that runs at the end of each day (at 08:00 pm) with the respective values for each parameter.
+
+***Azure Synapse Analytics*** with a `Serverless Database Pool` is used to create external tables from the Delta Tables in the curated and staging containers of the Storage Account.
+
