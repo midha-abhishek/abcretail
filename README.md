@@ -5,19 +5,23 @@
 ## Technologies Involved
 
 - **GitHub**
-- **Microsoft Entra ID** with **Azure Default Directory**
+- **Microsoft Entra ID** with:
+	- **Azure Default Directory** application for *`Service Principal`*
 - **Azure Key Vault**
-- **Azure SQL Database**
-- **Microsoft SQL Server**
-- **ANSI SQL**
-- **DBeaver**
-- **Microsoft Integration Runtime**
+- **Azure SQL Database** with **Azure SQL Server**
+- **Microsoft SQL Server** with:
+	- **Microsoft SQL Server Management Studio**
+	- **Microsoft SQL Server Configuration Manager**
+	- **ANSI SQL**
+	- **DBeaver** for the *`ER Diagram`*
+	- **Microsoft Integration Runtime**
 - **Azure Data Lake Gen2 Storage Account**
 - **Azure Data Factory**
-- **Azure Databricks**
-- **PySpark**
-- **Azure Synapse Analytics**
-- **Transact-SQL**
+- **Azure Databricks** with
+	- **PySpark**
+- **Azure Synapse Analytics** with
+	- *`Serverless Database Pool`*
+	- **Transact-SQL**
 
 ## Abstract
 
