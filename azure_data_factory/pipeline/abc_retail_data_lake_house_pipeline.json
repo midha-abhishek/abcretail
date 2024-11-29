@@ -660,128 +660,97 @@
 		],
 		"parameters": {
 			"storage_account": {
-				"type": "string",
-				"defaultValue": "dlsaabcretail"
+				"type": "string"
 			},
 			"client_id": {
-				"type": "string",
-				"defaultValue": "3a14b98e-3453-4ab1-ba4b-41c59c2b68aa"
+				"type": "string"
 			},
 			"directory_id": {
-				"type": "string",
-				"defaultValue": "df25728e-a83d-4656-85e7-f7ab9a394f94"
+				"type": "string"
 			},
 			"metadata_container": {
-				"type": "string",
-				"defaultValue": "metadata"
+				"type": "string"
 			},
 			"lookup_filename": {
-				"type": "string",
-				"defaultValue": "lookup"
+				"type": "string"
 			},
 			"github_username": {
-				"type": "string",
-				"defaultValue": "midha-abhishek"
+				"type": "string"
 			},
 			"github_repository": {
-				"type": "string",
-				"defaultValue": "abcretail"
+				"type": "string"
 			},
 			"github_branch": {
-				"type": "string",
-				"defaultValue": "dev"
+				"type": "string"
 			},
 			"github_softline_data_folder": {
-				"type": "string",
-				"defaultValue": "softline_data"
+				"type": "string"
 			},
 			"raw_container": {
-				"type": "string",
-				"defaultValue": "raw"
+				"type": "string"
 			},
 			"http_folder": {
-				"type": "string",
-				"defaultValue": "http"
+				"type": "string"
 			},
 			"az_sqlserver": {
-				"type": "string",
-				"defaultValue": "sqlserver-abcretail"
+				"type": "string"
 			},
 			"az_sqldb": {
-				"type": "string",
-				"defaultValue": "sqldb_abcretail"
+				"type": "string"
 			},
 			"az_sqlserver_username": {
-				"type": "string",
-				"defaultValue": "abhishekmidha"
+				"type": "string"
 			},
 			"az_sqldb_schema": {
-				"type": "string",
-				"defaultValue": "SalesLT"
+				"type": "string"
 			},
 			"azsqldb_folder": {
-				"type": "string",
-				"defaultValue": "azsqldb"
+				"type": "string"
 			},
 			"onprem_sqlserver": {
-				"type": "string",
-				"defaultValue": "localhost"
+				"type": "string"
 			},
 			"onprem_sqldb": {
-				"type": "string",
-				"defaultValue": "onprem_abcretail"
+				"type": "string"
 			},
 			"onprem_sqlserver_username": {
-				"type": "string",
-				"defaultValue": "abhishek"
+				"type": "string"
 			},
 			"onprem_sqldb_schema": {
-				"type": "string",
-				"defaultValue": "dbo"
+				"type": "string"
 			},
 			"onpremsqldb_folder": {
-				"type": "string",
-				"defaultValue": "onpremsqlserver"
+				"type": "string"
 			},
 			"key_vault": {
-				"type": "string",
-				"defaultValue": "kv-abcretail"
+				"type": "string"
 			},
 			"client_secret": {
-				"type": "string",
-				"defaultValue": "client-secret"
+				"type": "string"
 			},
 			"http_csv_folder": {
-				"type": "string",
-				"defaultValue": "http/csv"
+				"type": "string"
 			},
 			"lookup_folder": {
-				"type": "string",
-				"defaultValue": "lookup"
+				"type": "string"
 			},
 			"dbrks_workspace": {
-				"type": "string",
-				"defaultValue": "adb-1495672711773585.5"
+				"type": "string"
 			},
 			"dbrks_token": {
-				"type": "string",
-				"defaultValue": "databricks-token"
+				"type": "string"
 			},
 			"cluster_version": {
-				"type": "string",
-				"defaultValue": "15.4.x-scala2.12"
+				"type": "string"
 			},
 			"cluster_node_type": {
-				"type": "string",
-				"defaultValue": "Standard_DS3_v2"
+				"type": "string"
 			},
 			"dbrks_data_cleaning_notebook": {
-				"type": "string",
-				"defaultValue": "/abcretail/data_cleaning"
+				"type": "string"
 			},
 			"dbrks_etl_notebook": {
-				"type": "string",
-				"defaultValue": "/abcretail/etl_business_case"
+				"type": "string"
 			}
 		},
 		"annotations": []
