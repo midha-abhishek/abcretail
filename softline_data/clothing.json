@@ -1,0 +1,35 @@
+[
+  {
+    "ProductID": 1,
+    "Category": "Clothing",
+    "SubCategory": "Menswear",
+    "ProductName": "Slim Fit T-Shirt",
+    "Brand": "FashionWear",
+    "Sizes": ["S", "M", "L", "XL"],
+    "Colors": ["Red", "Blue", "Black"],
+    "Price": 29.99,
+    "Description": "A stylish slim-fit t-shirt perfect for casual outings."
+  },
+  {
+    "ProductID": 2,
+    "Category": "Clothing",
+    "SubCategory": "Womenswear",
+    "ProductName": "Floral Summer Dress",
+    "Brand": "ElegantStyle",
+    "Sizes": ["S", "M", "L"],
+    "Colors": ["White", "Yellow", "Pink"],
+    "Price": 49.99,
+    "Description": "A light and breezy summer dress with a floral design."
+  },
+  {
+    "ProductID": 3,
+    "Category": "Clothing",
+    "SubCategory": "Outerwear",
+    "ProductName": "Classic Denim Jacket",
+    "Brand": "UrbanEdge",
+    "Sizes": ["M", "L", "XL"],
+    "Colors": ["Blue", "Black"],
+    "Price": 69.99,
+    "Description": "A classic denim jacket for all occasions."
+  }
+]

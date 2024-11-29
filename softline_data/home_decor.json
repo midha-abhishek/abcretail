@@ -1,0 +1,35 @@
+[
+  {
+    "ProductID": 10,
+    "Category": "Home Decor",
+    "SubCategory": "Lighting",
+    "ProductName": "Modern Table Lamp",
+    "Brand": "BrightHomes",
+    "Sizes": ["One Size"],
+    "Colors": ["White", "Black"],
+    "Price": 39.99,
+    "Description": "A sleek and modern table lamp to brighten up your space."
+  },
+  {
+    "ProductID": 11,
+    "Category": "Home Decor",
+    "SubCategory": "Wall Art",
+    "ProductName": "Abstract Canvas Painting",
+    "Brand": "Artistic Vibes",
+    "Sizes": ["Medium", "Large"],
+    "Colors": ["Multicolor"],
+    "Price": 99.99,
+    "Description": "A vibrant abstract painting to add color to your walls."
+  },
+  {
+    "ProductID": 12,
+    "Category": "Home Decor",
+    "SubCategory": "Furniture",
+    "ProductName": "Wooden Coffee Table",
+    "Brand": "Rustic Charm",
+    "Sizes": ["One Size"],
+    "Colors": ["Brown", "Black"],
+    "Price": 129.99,
+    "Description": "A stylish wooden coffee table with a rustic finish."
+  }
+]

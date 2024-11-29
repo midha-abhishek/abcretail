@@ -1,0 +1,87 @@
+{
+	"name": "ds_dlsa_json",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_dlsa_abcretail",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"storage_account": {
+					"value": "@dataset().storage_account",
+					"type": "Expression"
+				},
+				"client_id": {
+					"value": "@dataset().client_id",
+					"type": "Expression"
+				},
+				"directory_id": {
+					"value": "@dataset().directory_id",
+					"type": "Expression"
+				},
+				"key_vault": {
+					"value": "@dataset().key_vault",
+					"type": "Expression"
+				},
+				"client_secret": {
+					"value": "@dataset().client_secret",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"storage_account": {
+				"type": "string"
+			},
+			"client_id": {
+				"type": "string"
+			},
+			"directory_id": {
+				"type": "string"
+			},
+			"container_json": {
+				"type": "string"
+			},
+			"filename": {
+				"type": "string"
+			},
+			"key_vault": {
+				"type": "string"
+			},
+			"client_secret": {
+				"type": "string"
+			},
+			"folder_json": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@concat(dataset().filename, '.json')",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().folder_json",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().container_json",
+					"type": "Expression"
+				}
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"source": {
+					"type": "string"
+				},
+				"filename": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}

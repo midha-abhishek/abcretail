@@ -1,0 +1,65 @@
+{
+	"name": "ls_trigger_everyday_8pm",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "abc_retail_data_lake_house_pipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"storage_account": "dlsaabcretail",
+					"client_id": "3a14b98e-3453-4ab1-ba4b-41c59c2b68aa",
+					"directory_id": "df25728e-a83d-4656-85e7-f7ab9a394f94",
+					"metadata_container": "metadata",
+					"lookup_filename": "lookup",
+					"github_username": "midha-abhishek",
+					"github_repository": "abcretail",
+					"github_branch": "dev",
+					"github_softline_data_folder": "softline_data",
+					"raw_container": "raw",
+					"http_folder": "http",
+					"az_sqlserver": "sqlserver-abcretail",
+					"az_sqldb": "sqldb_abcretail",
+					"az_sqlserver_username": "abhishekmidha",
+					"az_sqldb_schema": "SalesLT",
+					"azsqldb_folder": "azsqldb",
+					"onprem_sqlserver": "localhost",
+					"onprem_sqldb": "onprem_abcretail",
+					"onprem_sqlserver_username": "abhishek",
+					"onprem_sqldb_schema": "dbo",
+					"onpremsqldb_folder": "onpremsqlserver",
+					"key_vault": "kv-abcretail",
+					"client_secret": "client-secret",
+					"http_csv_folder": "http/csv",
+					"lookup_folder": "lookup",
+					"dbrks_workspace": "adb-1495672711773585.5",
+					"dbrks_token": "databricks-token",
+					"cluster_version": "15.4.x-scala2.12",
+					"cluster_node_type": "Standard_DS3_v2",
+					"dbrks_data_cleaning_notebook": "/abcretail/data_cleaning",
+					"dbrks_etl_notebook": "/abcretail/etl_business_case"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2024-11-27T00:00:00",
+				"timeZone": "Eastern Standard Time",
+				"schedule": {
+					"minutes": [
+						0
+					],
+					"hours": [
+						20
+					]
+				}
+			}
+		}
+	}
+}

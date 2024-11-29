@@ -1,0 +1,60 @@
+{
+	"name": "ds_onprem_sqlserver",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_onprem_sqlserver_abcretail",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"onprem_sqlserver": {
+					"value": "@dataset().onprem_sqlserver",
+					"type": "Expression"
+				},
+				"onprem_sqldb": {
+					"value": "@dataset().onprem_sqldb",
+					"type": "Expression"
+				},
+				"onprem_sqlserver_username": {
+					"value": "@dataset().onprem_sqlserver_username",
+					"type": "Expression"
+				},
+				"key_vault": {
+					"value": "@dataset().key_vault",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"onprem_sqlserver": {
+				"type": "string"
+			},
+			"onprem_sqldb": {
+				"type": "string"
+			},
+			"onprem_sqlserver_username": {
+				"type": "string"
+			},
+			"onprem_sqldb_schema": {
+				"type": "string"
+			},
+			"onprem_sqldb_table_name": {
+				"type": "string"
+			},
+			"key_vault": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().onprem_sqldb_schema",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().onprem_sqldb_table_name",
+				"type": "Expression"
+			}
+		}
+	}
+}
