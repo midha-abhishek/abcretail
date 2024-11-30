@@ -180,6 +180,8 @@ A trigger was created (but not started, since no pipeline attached yet) to run a
 
 ### Azure Data Factory Pipeline
 
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline1.png)
+
 To handle data from multiple sources, a **`Lookup`** activity was used with a loopup.json file on the `metadata` container of the Storage account, as mentioned.
 
 To go through the array output, **`Foreach`** activity was used with a **`Switch`** activity. **`Foreach`** data source, the **`switch`** statement would run certain activities.
