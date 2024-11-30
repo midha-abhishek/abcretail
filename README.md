@@ -1,8 +1,8 @@
-# abcretail
+# **abcretail**
 
-## A Data Lake House Project
+## **A Data Lake House Project**
 
-## Technologies Involved
+## **Technologies Involved**
 
 - **GitHub** for:
 	- *`Continuous-Integration/Continuous-Deployment (CI/CD)`*
@@ -29,7 +29,7 @@
 	- *`Serverless Database Pool`*
 	- **Transact-SQL**
 
-## Abstract
+## **Abstract**
 
 This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deployment (CI/CD)`* throughout its course. For each major development changes, a new `dev` branch was created, and for final testing a separate `qa` branch was used with their own environment setup.
 
@@ -76,9 +76,9 @@ The two ***Azure Databricks*** clusters are incorporated into the ***Azure Data 
 
 Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough analysis was performed on the available data from the various sources.
 
-## Methodology:
+## **Methodology**
 
-### On Premise Microsoft SQL Server Database Setup
+### **On Premise Microsoft SQL Server Database Setup**
 
 On a new ***Microsoft SQL Server*** sample database was create using ***Microsoft SQL Server Mangement Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
 
@@ -113,13 +113,13 @@ The following `ER Diagram`  shows the overview schema of the on-premise databse:
 
 ***DBeaver*** was used to visualize the ER Diagram.
 
-### HTTP API — GitHup Replication Setup
+### **HTTP API — GitHup Replication Setup**
 
 To replicate an HTTP API with softline product datasets, ***GitHub*** was used.
 
 Some sample JSON datasets were created and uploaded to the ***GitHub*** Repository, which were later accessed through their raw links. The information about the data has been provided above.
 
-### Service Principal and Azure Key Vault Setup
+### **Service Principal and Azure Key Vault Setup**
 
 Created an **Azure Default Directory*** application using ***Microsoft Entra ID***, and then created a `client secret`.
 
@@ -128,7 +128,7 @@ Used ***Azure Key Vault*** in an ***Azure Resource Group*** to store the followi
 - `Directory ID`, also known as `Tenant ID`
 - `Client Secret`
 
-### Azure Data Lake Gen2 Storage Account Setup
+### **Azure Data Lake Gen2 Storage Account Setup**
 
 Created an ***Azure Data Lake Gen2 Storage Account*** with the following `Blob Storage Containers`:
 
@@ -139,11 +139,11 @@ Created an ***Azure Data Lake Gen2 Storage Account*** with the following `Blob S
 
 Under ***IAM Access Control***, appropriate roles were assigned to the ***Azure Default Directory*** application to give other resources (such as ***Azure Data Factory***, ***Azure Databricks*** and ***Azure Synapse Analytics***) required access through the `Service Principal`.
 
-### Azure SQL Database with SQL Server Setup
+### **Azure SQL Database with SQL Server Setup**
 
 An ***Azure SQL Database*** with ***SQL Server*** and a `sample` dataset was created. The password credentials were stored in the ***Azure Key Vault***
 
-### Lookup File Setup
+### **Lookup File Setup**
 
 Since the ***Azure Data Factory*** pipelines would be parameterized for reusability and modular purposes, a `lookup` JSON document was created to include all the datasets with their sources.  The file was uploaded to the `metadata` container. The link to the sample file has been provided above.
 
@@ -156,7 +156,7 @@ This is what a part of the JSON document looks like:
 },
 ```
 
-### Azure Data Factory Setup
+### **Azure Data Factory Setup**
 
 An ***Azure Data Factory*** resource was created in the ***Resource Group***, and linked to the ***GitHub*** Repository. The principles of `Continuous Integration/Continuous Development (CI/CD)` were followed throughout the development and testing process. For each stage of the development, testing and deployment, ***GitHub*** Repository branches were created and used. And each stage was tested thoroghly under separate environment and conditions.
 
@@ -178,7 +178,7 @@ Linked service for ***Databricks*** were created later on.
 
 A trigger was created (but not started, since no pipeline attached yet) to run at the end of each day at 08:00 pm.
 
-### Azure Data Factory Pipeline
+### **Azure Data Factory Initial Pipeline Setup**
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline1.png)
 
@@ -199,4 +199,5 @@ The default activity was left to **`Wait`** for 1 second.
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline3.png)
 
-### 
+### **Azure DataBricks  — Data Cleaning Cluster Setup**
+
