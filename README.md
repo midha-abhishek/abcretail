@@ -205,7 +205,7 @@ The default activity was left to **`Wait`** for 1 second.
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline4.png)
 
-### **Azure DataBricks  — Data Cleaning Cluster Setup**
+### **Azure Databricks  — Data Cleaning Cluster Setup**
 
 An ***Azure Databricks*** resource was created in the ***Resource Group***. An `access token` was created in the settings, and a linked service in the ***Azure Data Factory*** for later use.
 
@@ -215,8 +215,12 @@ A notebook was created to clean the raw data from various sources. The notebook 
 
 The cleaned data was stored in `Delta Tables` on the "curated" Blob Storage Container of the Data Lake Storage.
 
-### **Azure Data Bricks — Data Cleaning Cluster  and ADF Pipeline Integration**
+### **Azure Databricks — Data Cleaning Cluster  and ADF Pipeline Integration**
 
 A **`Databricks Notebook`** activity was used to automate the process of data cleaning at the end of each pipeline run.
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline5.png)
+
+
+### **Azure Databricks ETL Cluster**
+
