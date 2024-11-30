@@ -2,6 +2,10 @@
 
 ## **A Data Lake House Project**
 
+## Project GitHub Link
+
+This project could be found on GitHub [here](https://github.com/midha-abhishek/abcretail/tree/main).
+
 ## **Technologies Involved**
 
 - **GitHub** for:
@@ -193,11 +197,13 @@ For the JSON data from the ***HTTP API***, two sequenced parameterized activitie
 - A **`Copy data`** activity to simply copy the JSON data as it is.
 - A **`Data flow`** to ensure that the nested objects and arrays were saved properly under their `CSV` headers.
 
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline3.png)
+
 For the hardline datasets from both the ***Azure SQL Database*** and on-premise, self-hosted ***Microsoft SQL Server***, **`Copy data`** activities was used to ingest data in the `parquet` format.
 
 The default activity was left to **`Wait`** for 1 second.
 
-![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline3.png)
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline4.png)
 
 ### **Azure DataBricks  — Data Cleaning Cluster Setup**
 
@@ -205,3 +211,12 @@ An ***Azure Databricks*** resource was created in the ***Resource Group***. An `
 
 A `secret scope` was created to access the credentials from the ***Azure Key Vault****.
 
+A notebook was created to clean the raw data from various sources. The notebook could be accessed [here](https://github.com/midha-abhishek/abcretail/blob/main/databricks/data_cleaning.ipynb).
+
+The cleaned data was stored in `Delta Tables` on the "curated" Blob Storage Container of the Data Lake Storage.
+
+### **Azure Data Bricks — Data Cleaning Cluster  and ADF Pipeline Integration**
+
+A **`Databricks Notebook`** activity was used to automate the process of data cleaning at the end of each pipeline run.
+
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline5.png)
