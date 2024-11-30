@@ -186,8 +186,17 @@ To handle data from multiple sources, a **`Lookup`** activity was used with a lo
 
 To go through the array output, **`Foreach`** activity was used with a **`Switch`** activity. **`Foreach`** data source, the **`switch`** statement would run certain activities.
 
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline2.png)
+
 For the JSON data from the ***HTTP API***, two sequenced parameterized activities were used:
 
 - A **`Copy data`** activity to simply copy the JSON data as it is.
-- A **`Data flow`** to ensure that the nested objects and arrays were saved properly under their CSV headers.
+- A **`Data flow`** to ensure that the nested objects and arrays were saved properly under their `CSV` headers.
 
+For the hardline datasets from both the ***Azure SQL Database*** and on-premise, self-hosted ***Microsoft SQL Server***, **`Copy data`** activities was used to ingest data in the `parquet` format.
+
+The default activity was left to **`Wait`** for 1 second.
+
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline3.png)
+
+### 
