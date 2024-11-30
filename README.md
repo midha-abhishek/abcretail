@@ -131,6 +131,7 @@ Used ***Azure Key Vault*** in an ***Azure Resource Group*** to store the followi
 - `Client ID`, also known as `Application ID`
 - `Directory ID`, also known as `Tenant ID`
 - `Client Secret`
+- Self-hosted on-premise `Microsoft SQL Server Authentication Password`
 
 ### **Azure Data Lake Gen2 Storage Account Setup**
 
@@ -145,7 +146,7 @@ Under ***IAM Access Control***, appropriate roles were assigned to the ***Azure 
 
 ### **Azure SQL Database with SQL Server Setup**
 
-An ***Azure SQL Database*** with ***SQL Server*** and a `sample` dataset was created. The password credentials were stored in the ***Azure Key Vault***
+An ***Azure SQL Database*** with ***SQL Server*** and a `sample` dataset was created. The password credentials were stored in the ***Azure Key Vault***.
 
 ### **Lookup File Setup**
 
@@ -233,4 +234,10 @@ The **`ETL`** ***Azure Databricks*** notebook was also added to the ***Azure Dat
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline6.png)
 
 ### Azure Synapse Analytics Integration
+
+An ***Azure Synapse Analytics*** resource was created in the ***Azure Resource Group***, and the access to the ***Key Vault*** was granted through the ***Key Vault*** **`Access Policies`** for the `Service Principal` credentials.
+
+Parameterized dynamic linked services for the ***Key Vault*** and  ***Data Lake Storage Account*** was created.
+
+A `serverless` database pool was created.
 
