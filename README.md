@@ -201,3 +201,7 @@ The default activity was left to **`Wait`** for 1 second.
 
 ### **Azure DataBricks  — Data Cleaning Cluster Setup**
 
+An ***Azure Databricks*** resource was created in the ***Resource Group***. An `access token` was created in the settings, and a linked service in the ***Azure Data Factory*** for later use.
+
+A `secret scope` was created to access the credentials from the ***Azure Key Vault****.
+
