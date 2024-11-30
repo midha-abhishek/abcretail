@@ -24,6 +24,7 @@ This project could be found on GitHub [here](https://github.com/midha-abhishek/a
 	- **ANSI SQL**
 	- **DBeaver** for the *`ER Diagram`*
 	- **Microsoft Integration Runtime**
+	- **Windows Firewall**
 - **Azure Data Lake Gen2 Storage Account**
 - **Azure Data Factory**
 - **Azure Databricks** with
@@ -279,13 +280,16 @@ FROM SalesByYear
 ORDER BY SalesYear;
 ```
 
-### Pipeline Monitoring and Troubleshooting Measures
+## **Pipeline Monitoring and Troubleshooting Measures**
 
 - **`Monitor logs`** for the **Data Factory** pipeline runs were checked thoroughly for detailed activity logs and error messages.
 - Used ***ADF*** **`Debug`** mode to test individual activities, and checked for runtime errors.
+- Ensured that the TCP/UDP ports for the ***Microsoft SQL Server*** were properly configured in the ***Firewall***.
 - The on-premise server was ensured to be available most of the time so that the data is available and accessible when needed.
 - Pipeline parameters and credentials were ensured to be entered correctly.
 - Data formats in the `Copy data` and `Data flow` activities were ensured to match properly.
 - Ensure no mismatch between the source and sink schema for consistent mapping.
 - Ensured that the **`Integration Runtime`** and **`Service Principal`** credentials were configured correctly.
+- Adjusted the ***Databricks*** cluster size to handle larger workloads.
+- Analyzed ***Databricks*** job and cluster logs for detailed error information. Used ***Databricks*** monitoring tools for real-time insights.
 
