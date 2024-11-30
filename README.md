@@ -241,3 +241,41 @@ Parameterized dynamic linked services for the ***Key Vault*** and  ***Data Lake 
 
 A `serverless` database pool was created.
 
+Used `T-SQL` to create external tables for al the datasets from various sources available on the "curated" and "staging" Delta Tables. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_synapse_analytics/sqlscript/external_tables_ddl.sql).
+
+Then performed thorough analysis on the available data using [aggregated functions](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_synapse_analytics/sqlscript/analysis_aggregation_dql.sql) and [joins](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_synapse_analytics/sqlscript/analysis_joins_dql.sql). Then performed some [advanced analysis](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_synapse_analytics/sqlscript/analysis_advanced_dql.sql).
+
+Here's a sample of some of the advanced analysis performed:
+
+```sql
+-- Top 5 Products by Total Sales Revenue
+
+SELECT TOP 5 p.Name AS ProductName, 
+    SUM(sod.LineTotal) AS TotalRevenue,
+    COUNT(DISTINCT soh.SalesOrderID) AS NumberOfSales
+FROM [azsqldb_Product] p
+JOIN [azsqldb_SalesOrderDetail] sod ON p.ProductID = sod.ProductID
+JOIN [azsqldb_SalesOrderHeader] soh ON sod.SalesOrderID = soh.SalesOrderID
+WHERE soh.Status = 5  -- 5 indicates completed orders
+GROUP BY p.Name
+ORDER BY TotalRevenue DESC;
+```
+
+```sql
+-- Year-Over-Year Sales Growth
+
+WITH SalesByYear AS (
+    SELECT YEAR(OrderDate) AS SalesYear, 
+        SUM(TotalDue) AS TotalSales
+    FROM [azsqldb_SalesOrderHeader]
+    WHERE OrderDate IS NOT NULL
+    GROUP BY YEAR(OrderDate)
+)
+SELECT SalesYear, 
+    TotalSales, 
+    LAG(TotalSales, 1) OVER (ORDER BY SalesYear) AS LastYearSales,
+    ((TotalSales - LAG(TotalSales, 1) OVER (ORDER BY SalesYear)) / LAG(TotalSales, 1) OVER (ORDER BY SalesYear)) * 100 AS SalesGrowthPercentage
+FROM SalesByYear
+ORDER BY SalesYear;
+```
+
