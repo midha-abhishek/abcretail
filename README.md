@@ -54,7 +54,7 @@ The project involves data ingestion from multiple sources:
 > 
 > To replicate the HTTP API, I created and uploaded the JSON documents to GitHub, which can be found [here](https://github.com/midha-abhishek/abcretail/tree/main/softline_data). I used their direct raw HTTP links to pull data.
 > 
-> The includes links to the following JSON files are here:
+> The direct links to the JSON files are here:
 > 
 > - [accessories.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/accessories.json)
 > - [clothing.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/clothing.json)
