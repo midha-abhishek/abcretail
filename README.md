@@ -129,7 +129,7 @@ Some sample JSON datasets were created and uploaded to the ***GitHub*** Reposito
 Created an **Azure Default Directory*** application using ***Microsoft Entra ID***, and then created a `client secret`.
 
 Used ***Azure Key Vault*** in an ***Azure Resource Group*** to store the following credentials:
-- `Client ID`, also known as `Application ID`
+- `Client ID`, also known as `Application ID` and `Service Principal ID`
 - `Directory ID`, also known as `Tenant ID`
 - `Client Secret`
 - Self-hosted on-premise `Microsoft SQL Server Authentication Password`
