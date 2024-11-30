@@ -50,7 +50,7 @@ The project involves data ingestion from multiple sources:
 
 > [!Note]
 >
-> GitHub HTTP API Replication
+> **GitHub HTTP API Replication**
 > 
 > To replicate the HTTP API, I created and uploaded the JSON documents to GitHub, which can be found [here](https://github.com/midha-abhishek/abcretail/tree/main/softline_data). I used their direct raw HTTP links to pull data.
 > 
@@ -67,7 +67,7 @@ The *`raw`* data from the various sources is then stored in the "raw" container 
 
 > [!Note]
 >
-> Lookup JSON Document
+> **Lookup JSON Document**
 > 
 > A JSON document (lookup.json) was created and uploaded to the "metadata" container of the Storage Account with all the datasets and their respective sources. A sample of this document can be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/metadata/lookup/lookup.json).
 
