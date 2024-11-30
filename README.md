@@ -290,6 +290,7 @@ ORDER BY SalesYear;
 - Data formats in the `Copy data` and `Data flow` activities were ensured to match properly.
 - Ensure no mismatch between the source and sink schema for consistent mapping.
 - Ensured that the **`Integration Runtime`** and **`Service Principal`** credentials were configured correctly.
+- Conditional statements and error handling was used in the ***Databricks*** **`Notebooks`** to handle day-to-day activities.
 - Adjusted the ***Databricks*** cluster size to handle larger workloads.
 - Analyzed ***Databricks*** job and cluster logs for detailed error information. Used ***Databricks*** monitoring tools for real-time insights.
 
