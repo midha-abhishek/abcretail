@@ -222,5 +222,15 @@ A **`Databricks Notebook`** activity was used to automate the process of data cl
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline5.png)
 
 
-### **Azure Databricks ETL Cluster**
+### **Azure Databricks — ETL Cluster**
+
+Another ***Databricks*** Notebook was created for business case `ETL (Extract, Transform and Load)`. The data was extracted from the Delta Tables on the "curated" container of the Storage Account,  transformed as per the business use cases, and loaded in the `Delta Tables` onto the "staging" container. The notebook could be found [here](https://github.com/midha-abhishek/abcretail/blob/main/databricks/etl_business_case.ipynb).
+
+### **Complete Azure Data Factory Pipeline with Databricks Clusters**
+
+The **`ETL`** ***Azure Databricks*** notebook was also added to the ***Azure Data Factory*** pipeline.
+
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline6.png)
+
+### Azure Synapse Analytics Integration
 
