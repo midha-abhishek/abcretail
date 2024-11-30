@@ -4,7 +4,7 @@
 
 ## Project GitHub Link
 
-This project could be found on GitHub [here](https://github.com/midha-abhishek/abcretail/tree/main).
+This project can be found on GitHub [here](https://github.com/midha-abhishek/abcretail/tree/main).
 
 ## **Technologies Involved**
 
@@ -36,21 +36,21 @@ This project could be found on GitHub [here](https://github.com/midha-abhishek/a
 
 ## **Abstract**
 
-This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deployment (CI/CD)`* throughout its course. For each major development changes, a new `dev` branch was created, and for final testing a separate `qa` branch was used with their own environment setup.
+This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deployment (CI/CD)`* throughout its course. For each major development change, a new `dev` branch was created, and for final testing, a separate `qa` branch was used with its own environment setup.
 
-For security, *`Service Principal`* was used with the combination of ***Microsoft Entra ID*** with ***Azure Default Directry App*** and ***Azure Key Vault*** was used. ***Azure Key Vault*** was also used to store other important secrets, passwords and credentials.
+For security, *`Service Principal`* was used with the combination of ***Microsoft Entra ID*** with ***Azure Default Directory App*** and ***Azure Key Vault*** was used. ***Azure Key Vault*** was also used to store other important secrets, passwords and credentials.
 
-*`Dynamic`* links, triggers, datasets, data flows and other pipeline activities were used wherever permissible to avoid hard-coding. They were *`tested`* thoroughly with the required credentials.
+*`Dynamic`* links, triggers, datasets, data flows and other pipeline activities were used wherever permissible to avoid hard coding. They were *`tested`* thoroughly with the required credentials.
 
 The project involves data ingestion from multiple sources:
 
-- ***HTTP API*** with JSON softline products data
+- ***HTTP API*** with JSON softline product data
 - ***Azure SQL Database***
 - On-Premise ***Microsoft SQL Server***
 
 > [!note]- GitHub HTTP API Replication
 > 
-> To replicate the HTTP API, I created and uploaded the JSON documents to the GitHub, which could be found [here](https://github.com/midha-abhishek/abcretail/tree/main/softline_data). I used their direct raw HTTP links to pull data.
+> To replicate the HTTP API, I created and uploaded the JSON documents to GitHub, which can be found [here](https://github.com/midha-abhishek/abcretail/tree/main/softline_data). I used their direct raw HTTP links to pull data.
 > 
 > The includes links to the following JSON files are here:
 > 
@@ -59,13 +59,13 @@ The project involves data ingestion from multiple sources:
 > - [footwear.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/footwear.json)
 > - [home_decor.json](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/softline_data/home_decor.json)
 
-The *`raw`* data from the various sources is then stored onto the "raw" container of the ***Azure Data Lake Storage Gen2 Account*** using ***Azure Data Factory*** pipeline.
+The *`raw`* data from the various sources is then stored in the "raw" container of the ***Azure Data Lake Storage Gen2 Account*** using ***Azure Data Factory*** pipeline.
 
 **`Lookup`**, **`Foreach`** and **`Switch`** activities are used to automate the dynamic pipeline for each dataset and data source.
 
 > [!note]- Lookup JSON Document
 > 
-> A JSON document (lookup.json) was created and uploaded to the "metadata" container of the Storage Account with all the datasets and their respective sources. A sample of this document could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/metadata/lookup/lookup.json).
+> A JSON document (lookup.json) was created and uploaded to the "metadata" container of the Storage Account with all the datasets and their respective sources. A sample of this document can be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/metadata/lookup/lookup.json).
 
 The JSON raw data are stored first as it is using the **`Copy data`** activity, and then as CSV using the `Data flow` to ensure that the nested objects and arrays are saved properly under their respective CSV headers.
 
@@ -73,7 +73,7 @@ The JSON raw data are stored first as it is using the **`Copy data`** activity, 
 
 Using *`PySpark`* in an ***Azure Databricks*** cluster, the raw data is then cleaned and stored in *`Delta Tables`* onto the "curated" container of the Storage Account.
 
-With another **Databricks** cluster, ***`ETL`*** is performed on the Delta Tables (as per business case scenario). The transformed Delta Tables are stored onto the "staging" container.
+With another **Databricks** cluster, ***`ETL`*** is performed on the Delta Tables (as per the business case scenario). The transformed Delta Tables are stored in the "staging" container.
 
 The two ***Azure Databricks*** clusters are incorporated into the ***Azure Data Factory*** pipeline, and the parameterized pipeline is again automated using a **`trigger`** that runs at the end of each day (at 08:00 pm) with the respective values for each parameter.
 
@@ -83,9 +83,9 @@ Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough a
 
 ## **Methodology**
 
-### **On Premise Microsoft SQL Server Database Setup**
+### **On-Premise Microsoft SQL Server Database Setup**
 
-On a new ***Microsoft SQL Server*** sample database was create using ***Microsoft SQL Server Mangement Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
+On a new ***Microsoft SQL Server*** sample database was created using ***Microsoft SQL Server Management Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
 
 Here's what the sample code from the DDL looks like:
 
@@ -112,13 +112,13 @@ VALUES
 SELECT * FROM Customer;
 ```
 
-The following `ER Diagram`  shows the overview schema of the on-premise databse:
+The following `ER Diagram`  shows the overview schema of the on-premise database:
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/ERDiagram.png)
 
 ***DBeaver*** was used to visualize the ER Diagram.
 
-### **HTTP API — GitHup Replication Setup**
+### **HTTP API — GitHub Replication Setup**
 
 To replicate an HTTP API with softline product datasets, ***GitHub*** was used.
 
@@ -164,7 +164,7 @@ This is what a part of the JSON document looks like:
 
 ### **Azure Data Factory Setup**
 
-An ***Azure Data Factory*** resource was created in the ***Resource Group***, and linked to the ***GitHub*** Repository. The principles of `Continuous Integration/Continuous Development (CI/CD)` were followed throughout the development and testing process. For each stage of the development, testing and deployment, ***GitHub*** Repository branches were created and used. And each stage was tested thoroghly under separate environment and conditions.
+An ***Azure Data Factory*** resource was created in the ***Resource Group***, and linked to the ***GitHub*** Repository. The principles of `Continuous Integration/Continuous Development (CI/CD)` were followed throughout the development and testing process. For each stage of the development, testing and deployment, ***GitHub*** Repository branches were created and used. Each stage was tested thoroughly under separate environments and conditions.
 
 The ***Azure Data Factory*** was given access to the ***Azure Key Vault*** credentials through ***Key Vault*** `Access Policies`. At the same time, the access was created for ***AzureDatabricks*** for later use.
 
@@ -180,7 +180,7 @@ Linked services for the following resources were created:
 
 While creating the Selfhosted ***Microsoft SQL Server*** linked service, an integration runtime was also created and linked to an on-premise ***Microsoft Integration Runtime***.
 
-Linked service for ***Databricks*** were created later on.
+A linked service for ***Databricks*** was created later on.
 
 A trigger was created (but not started, since no pipeline attached yet) to run at the end of each day at 08:00 pm.
 
@@ -201,7 +201,7 @@ For the JSON data from the ***HTTP API***, two sequenced parameterized activitie
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline3.png)
 
-For the hardline datasets from both the ***Azure SQL Database*** and on-premise, self-hosted ***Microsoft SQL Server***, **`Copy data`** activities was used to ingest data in the `parquet` format.
+For the hardline datasets from both the ***Azure SQL Database*** and on-premise, self-hosted ***Microsoft SQL Server***, **`Copy data`** activities were used to ingest data in the `parquet` format.
 
 The default activity was left to **`Wait`** for 1 second.
 
@@ -226,7 +226,7 @@ A **`Databricks Notebook`** activity was used to automate the process of data cl
 
 ### **Azure Databricks — ETL Cluster**
 
-Another ***Databricks*** Notebook was created for business case `ETL (Extract, Transform and Load)`. The data was extracted from the Delta Tables on the "curated" container of the Storage Account,  transformed as per the business use cases, and loaded in the `Delta Tables` onto the "staging" container. The notebook could be found [here](https://github.com/midha-abhishek/abcretail/blob/main/databricks/etl_business_case.ipynb).
+Another ***Databricks*** Notebook was created for the business case `ETL (Extract, Transform and Load)`. The data was extracted from the Delta Tables on the "curated" container of the Storage Account,  transformed as per the business use cases, and loaded in the `Delta Tables` onto the "staging" container. The notebook could be found [here](https://github.com/midha-abhishek/abcretail/blob/main/databricks/etl_business_case.ipynb).
 
 ### **Complete Azure Data Factory Pipeline with Databricks Clusters**
 
@@ -236,9 +236,9 @@ The **`ETL`** ***Azure Databricks*** notebook was also added to the ***Azure Dat
 
 ### Azure Synapse Analytics Integration
 
-An ***Azure Synapse Analytics*** resource was created in the ***Azure Resource Group***, and the access to the ***Key Vault*** was granted through the ***Key Vault*** **`Access Policies`** for the `Service Principal` credentials.
+An ***Azure Synapse Analytics*** resource was created in the ***Azure Resource Group***, and access to the ***Key Vault*** was granted through the ***Key Vault*** **`Access Policies`** for the `Service Principal` credentials.
 
-Parameterized dynamic linked services for the ***Key Vault*** and  ***Data Lake Storage Account*** was created.
+Parameterized dynamic linked services for the ***Key Vault*** and  ***Data Lake Storage Account*** were created.
 
 A `serverless` database pool was created.
 
@@ -246,7 +246,7 @@ Used `T-SQL` to create external tables for al the datasets from various sources 
 
 Then performed thorough analysis on the available data using [aggregated functions](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_synapse_analytics/sqlscript/analysis_aggregation_dql.sql) and [joins](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_synapse_analytics/sqlscript/analysis_joins_dql.sql). Then performed some [advanced analysis](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_synapse_analytics/sqlscript/analysis_advanced_dql.sql).
 
-Here's a sample of some of the advanced analysis performed:
+Here's a sample of some of the advanced analyses performed:
 
 ```sql
 -- Top 5 Products by Total Sales Revenue
@@ -290,7 +290,7 @@ ORDER BY SalesYear;
 - Data formats in the `Copy data` and `Data flow` activities were ensured to match properly.
 - Ensure no mismatch between the source and sink schema for consistent mapping.
 - Ensured that the **`Integration Runtime`** and **`Service Principal`** credentials were configured correctly.
-- Conditional statements and error handling was used in the ***Databricks*** **`Notebooks`** to handle day-to-day activities.
+- Conditional statements and error handling were used in the ***Databricks*** **`Notebooks`** to handle day-to-day activities.
 - Adjusted the ***Databricks*** cluster size to handle larger workloads.
 - Analyzed ***Databricks*** job and cluster logs for detailed error information. Used ***Databricks*** monitoring tools for real-time insights.
 
