@@ -36,6 +36,10 @@ This project can be found on GitHub [here](https://github.com/midha-abhishek/abc
 
 ## **Abstract**
 
+This is what the project schematics look like:
+
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/project_diagram/abcretail.drawio.png)
+
 This project uses ***GitHub*** for *`Continuous-Integration/Continuous-Deployment (CI/CD)`* throughout its course. For each major development change, a new `dev` branch was created, and for final testing, a separate `qa` branch was used with its own environment setup.
 
 For security, *`Service Principal`* was used with the combination of ***Microsoft Entra ID*** with ***Azure Default Directory App*** and ***Azure Key Vault*** was used. ***Azure Key Vault*** was also used to store other important secrets, passwords and credentials.
