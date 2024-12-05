@@ -91,6 +91,8 @@ Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough a
 
 On a new ***Microsoft SQL Server*** sample database was created using ***Microsoft SQL Server Management Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
 
+#### **DDL From the Normalized Database**
+
 Here's what the sample code from the DDL looks like:
 
 ```sql
@@ -115,11 +117,125 @@ VALUES
 SELECT * FROM Customer;
 ```
 
+#### **ER Diagrams**
+
 The following `ER Diagram`  shows the overview schema of the on-premise database:
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/ERDiagram.png)
 
-***DBeaver*** was used to visualize the ER Diagram.
+***DBeaver*** was used to visualize the above ER Diagram.
+
+Here's the detailed ER Diagram
+
+```mermaid
+erDiagram
+    CountryRolling {
+        INT CountryID PK
+        NVARCHAR CountryName
+    }
+    
+    StateProvinceRolling {
+        INT StateID PK
+        NVARCHAR StateName
+        INT CountryID FK
+    }
+	
+	Customer {
+        INT CustomerID PK
+        NVARCHAR FirstName
+        NVARCHAR LastName
+        NVARCHAR Email
+        NVARCHAR Phone
+        NVARCHAR AddressLine1
+        NVARCHAR AddressLine2
+        NVARCHAR City
+        INT StateID FK
+        NVARCHAR PostalCode
+    }
+    
+    Seller {
+        INT SellerID PK
+        NVARCHAR SellerName
+        NVARCHAR Email
+        NVARCHAR Phone
+        NVARCHAR AddressLine1
+        NVARCHAR AddressLine2
+        NVARCHAR City
+        INT StateID FK
+        NVARCHAR PostalCode
+    }
+	
+    ProductCategories {
+        INT CategoryID PK
+        NVARCHAR CategoryName
+    }
+    
+    Product {
+        INT ProductID PK
+        NVARCHAR ProductName
+        NVARCHAR Brand
+        NVARCHAR Specifications
+        INT CategoryID FK
+    }
+	
+	CustomerProductReview {
+        INT ReviewID PK
+        INT ProductID FK
+        INT CustomerID FK
+        INT Rating
+        NVARCHAR Review
+    }
+	
+	CustomerSellerReview {
+        INT ReviewID PK
+        INT SellerID FK
+        INT CustomerID FK
+        INT Rating
+        NVARCHAR Review
+    }
+    
+    ProductQuality {
+        INT ProductQualityID PK
+        NVARCHAR QualityType
+    }
+	
+	Promotion {
+        INT PromotionID PK
+        NVARCHAR PromotionDescription
+        DECIMAL DiscountPercentage
+    }
+	
+    SellerProductPromotion {
+        INT PromotionProductID PK
+        INT SellerID FK
+        INT ProductID FK
+        INT ProductQualityID FK
+        DECIMAL Price
+        INT PromotionID FK
+    }
+	
+    Order {
+        INT OrderID PK
+        INT CustomerID FK
+        INT PromotionProductID FK
+        INT Quantity
+    }
+	
+	StateProvinceRolling }o--|| CountryRolling: "Resides in"
+	Customer }o--o| StateProvinceRolling: "Lives in"
+	Seller }o--o| StateProvinceRolling: "Located in"
+	Product }o--|| ProductCategories: "Has"
+	Customer ||--o{ CustomerProductReview: "Writes"
+	CustomerProductReview }o--|| Product: "Reviews"
+	Customer ||--o{ CustomerSellerReview: "Writes"
+	CustomerSellerReview }o--|| Seller: "Reviews"
+	Seller ||--o{ SellerProductPromotion: "Creates"
+	SellerProductPromotion }o--|| Product: "Has"
+	SellerProductPromotion }o--o| ProductQuality: "Is of Quality"
+	SellerProductPromotion |o--o{ Promotion: "Includes"
+	Customer ||--o{ Order: "Places"
+    Order }o--|| SellerProductPromotion: "Contains"
+```
 
 ### **HTTP API — GitHub Replication Setup**
 
