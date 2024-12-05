@@ -69,14 +69,13 @@ SELECT * FROM StateProvinceRolling;
 --   AddressLine2 NVARCHAR(200),
 --   City NVARCHAR(100),
 --   StateID INT FOREIGN KEY REFERENCES StateProvinceRolling(StateID),
---   PostalCode NVARCHAR(20),
---   CountryID INT FOREIGN KEY REFERENCES CountryRolling(CountryID)
+--   PostalCode NVARCHAR(20)
 --);
 
---INSERT INTO Customer (FirstName, LastName, Email, Phone, AddressLine1, AddressLine2, City, StateID, PostalCode, CountryID)
+--INSERT INTO Customer (FirstName, LastName, Email, Phone, AddressLine1, AddressLine2, City, StateID, PostalCode)
 --VALUES
---   ('John', 'Doe', 'john.doe@example.com', '1234567890', '123 Main St', '', 'Toronto', 1, 'M5H 2N2', 1),
---   ('Jane', 'Smith', 'jane.smith@example.com', '9876543210', '456 Elm St', '', 'Los Angeles', 4, '90001', 2);
+--   ('John', 'Doe', 'john.doe@example.com', '1234567890', '123 Main St', '', 'Toronto', 1, 'M5H 2N2'),
+--   ('Jane', 'Smith', 'jane.smith@example.com', '9876543210', '456 Elm St', '', 'Los Angeles', 4, '90001');
 
 SELECT * FROM Customer;
 
@@ -89,14 +88,13 @@ SELECT * FROM Customer;
 --   AddressLine2 NVARCHAR(200),
 --   City NVARCHAR(100),
 --   StateID INT FOREIGN KEY REFERENCES StateProvinceRolling(StateID),
---   PostalCode NVARCHAR(20),
---   CountryID INT FOREIGN KEY REFERENCES CountryRolling(CountryID)
+--   PostalCode NVARCHAR(20)
 --);
 
---INSERT INTO Seller (SellerName, Email, Phone, AddressLine1, AddressLine2, City, StateID, PostalCode, CountryID)
+--INSERT INTO Seller (SellerName, Email, Phone, AddressLine1, AddressLine2, City, StateID, PostalCode)
 --VALUES
---   ('ElectroWorld', 'contact@electroworld.com', '1234567890', '789 Tech Park', '', 'New York', 3, '10001', 2),
---   ('FashionHub', 'support@fashionhub.com', '0987654321', '321 Market Street', '', 'Vancouver', 2, 'V6B 1A1', 1);
+--   ('ElectroWorld', 'contact@electroworld.com', '1234567890', '789 Tech Park', '', 'New York', 3, '10001'),
+--   ('FashionHub', 'support@fashionhub.com', '0987654321', '321 Market Street', '', 'Vancouver', 2, 'V6B 1A1');
 
 SELECT * FROm Seller;
 
