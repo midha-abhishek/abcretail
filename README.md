@@ -91,11 +91,11 @@ Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough a
 
 ## **Methodology**
 
-### **On-Premise Microsoft SQL Server Database Setup**
+### 1 — **On-Premise Microsoft SQL Server Database Setup**
 
 On a new ***Microsoft SQL Server*** sample database was created using ***Microsoft SQL Server Management Studio*** with `SQL Server Authentication` credentials. The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
 
-#### **DDL From the Normalized Database**
+#### 1.1 — **DDL From the Normalized Database**
 
 Here's what the sample code from the DDL looks like:
 
@@ -121,15 +121,9 @@ VALUES
 SELECT * FROM Customer;
 ```
 
-#### **ER Diagrams**
+#### 1.2 — **ER Diagrams**
 
-The following `ER Diagram`  shows the overview schema of the on-premise database:
-
-![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/ERDiagram.png)
-
-***DBeaver*** was used to visualize the above ER Diagram.
-
-Here's the detailed ER Diagram
+Here's the detailed `ER Diagram`:
 
 ```mermaid
 erDiagram
@@ -241,13 +235,17 @@ erDiagram
     Order }o--|| SellerProductPromotion: "Contains"
 ```
 
-### **HTTP API — GitHub Replication Setup**
+Here's the output `ER Diagram` as visualized in ***DBeaver***:
+
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/ERDiagram.png)
+
+### 2 — **HTTP API — GitHub Replication Setup**
 
 To replicate an HTTP API with softline product datasets, ***GitHub*** was used.
 
 Some sample JSON datasets were created and uploaded to the ***GitHub*** Repository, which were later accessed through their raw links. The information about the data has been provided above.
 
-### **Service Principal and Azure Key Vault Setup**
+### 3 — **Service Principal and Azure Key Vault Setup**
 
 Created an **Azure Default Directory*** application using ***Microsoft Entra ID***, and then created a `client secret`.
 
@@ -257,7 +255,7 @@ Used ***Azure Key Vault*** in an ***Azure Resource Group*** to store the followi
 - `Client Secret`
 - Self-hosted on-premise `Microsoft SQL Server Authentication Password`
 
-### **Azure Data Lake Gen2 Storage Account Setup**
+### 4 — **Azure Data Lake Gen2 Storage Account Setup**
 
 Created an ***Azure Data Lake Gen2 Storage Account*** with the following `Blob Storage Containers`:
 
@@ -268,11 +266,11 @@ Created an ***Azure Data Lake Gen2 Storage Account*** with the following `Blob S
 
 Under ***IAM Access Control***, appropriate roles were assigned to the ***Azure Default Directory*** application to give other resources (such as ***Azure Data Factory***, ***Azure Databricks*** and ***Azure Synapse Analytics***) required access through the `Service Principal`.
 
-### **Azure SQL Database with SQL Server Setup**
+### 5 — **Azure SQL Database with SQL Server Setup**
 
 An ***Azure SQL Database*** with ***SQL Server*** and a `sample` dataset was created. The password credentials were stored in the ***Azure Key Vault***.
 
-### **Lookup File Setup**
+### 6 — **Lookup File Setup**
 
 Since the ***Azure Data Factory*** pipelines would be parameterized for reusability and modular purposes, a `lookup` JSON document was created to include all the datasets with their sources.  The file was uploaded to the `metadata` container. The link to the sample file has been provided above.
 
@@ -285,7 +283,7 @@ This is what a part of the JSON document looks like:
 },
 ```
 
-### **Azure Data Factory Setup**
+### 7 — **Azure Data Factory Setup**
 
 An ***Azure Data Factory*** resource was created in the ***Resource Group***, and linked to the ***GitHub*** Repository. The principles of `Continuous Integration/Continuous Development (CI/CD)` were followed throughout the development and testing process. For each stage of the development, testing and deployment, ***GitHub*** Repository branches were created and used. Each stage was tested thoroughly under separate environments and conditions.
 
@@ -307,7 +305,7 @@ A linked service for ***Databricks*** was created later on.
 
 A trigger was created (but not started, since no pipeline attached yet) to run at the end of each day at 08:00 pm.
 
-### **Azure Data Factory Initial Pipeline Setup**
+#### 7.1 — **Azure Data Factory Initial Pipeline Setup**
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline1.png)
 
@@ -330,7 +328,7 @@ The default activity was left to **`Wait`** for 1 second.
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline4.png)
 
-### **Azure Databricks  — Data Cleaning Cluster Setup**
+### 8 — **Azure Databricks  — Data Cleaning Cluster Setup**
 
 An ***Azure Databricks*** resource was created in the ***Resource Group***. An `access token` was created in the settings, and a linked service in the ***Azure Data Factory*** for later use.
 
@@ -340,24 +338,24 @@ A notebook was created to clean the raw data from various sources. The notebook 
 
 The cleaned data was stored in `Delta Tables` on the "curated" Blob Storage Container of the Data Lake Storage.
 
-### **Azure Databricks — Data Cleaning Cluster  and ADF Pipeline Integration**
+#### 8.1 — **Azure Databricks — Data Cleaning Cluster  and ADF Pipeline Integration**
 
 A **`Databricks Notebook`** activity was used to automate the process of data cleaning at the end of each pipeline run.
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline5.png)
 
 
-### **Azure Databricks — ETL Cluster**
+### 9 — **Azure Databricks — ETL Cluster**
 
 Another ***Databricks*** Notebook was created for the business case `ETL (Extract, Transform and Load)`. The data was extracted from the Delta Tables on the "curated" container of the Storage Account,  transformed as per the business use cases, and loaded in the `Delta Tables` onto the "staging" container. The notebook could be found [here](https://github.com/midha-abhishek/abcretail/blob/main/databricks/etl_business_case.ipynb).
 
-### **Complete Azure Data Factory Pipeline with Databricks Clusters**
+### 10 — **Complete Azure Data Factory Pipeline with Databricks Clusters**
 
 The **`ETL`** ***Azure Databricks*** notebook was also added to the ***Azure Data Factory*** pipeline.
 
 ![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/azure_data_factory/pipeline/Pipeline6.png)
 
-### Azure Synapse Analytics Integration
+### 11 — Azure Synapse Analytics Integration
 
 An ***Azure Synapse Analytics*** resource was created in the ***Azure Resource Group***, and access to the ***Key Vault*** was granted through the ***Key Vault*** **`Access Policies`** for the `Service Principal` credentials.
 
