@@ -127,97 +127,97 @@ Here's the detailed `ER Diagram`:
 
 ```mermaid
 erDiagram
-    CountryRolling {
-        INT CountryID PK
-        NVARCHAR CountryName
-    }
-    
-    StateProvinceRolling {
-        INT StateID PK
-        NVARCHAR StateName
-        INT CountryID FK
-    }
+	CountryRolling {
+		INT CountryID PK
+		NVARCHAR CountryName
+	}
+	
+	StateProvinceRolling {
+		INT StateID PK
+		NVARCHAR StateName
+		INT CountryID FK
+	}
 	
 	Customer {
-        INT CustomerID PK
-        NVARCHAR FirstName
-        NVARCHAR LastName
-        NVARCHAR Email
-        NVARCHAR Phone
-        NVARCHAR AddressLine1
-        NVARCHAR AddressLine2
-        NVARCHAR City
-        INT StateID FK
-        NVARCHAR PostalCode
-    }
-    
-    Seller {
-        INT SellerID PK
-        NVARCHAR SellerName
-        NVARCHAR Email
-        NVARCHAR Phone
-        NVARCHAR AddressLine1
-        NVARCHAR AddressLine2
-        NVARCHAR City
-        INT StateID FK
-        NVARCHAR PostalCode
-    }
+		INT CustomerID PK
+		NVARCHAR FirstName
+		NVARCHAR LastName
+		NVARCHAR Email
+		NVARCHAR Phone
+		NVARCHAR AddressLine1
+		NVARCHAR AddressLine2
+		NVARCHAR City
+		INT StateID FK
+		NVARCHAR PostalCode
+	}
 	
-    ProductCategories {
-        INT CategoryID PK
-        NVARCHAR CategoryName
-    }
-    
-    Product {
-        INT ProductID PK
-        NVARCHAR ProductName
-        NVARCHAR Brand
-        NVARCHAR Specifications
-        INT CategoryID FK
-    }
+	Seller {
+		INT SellerID PK
+		NVARCHAR SellerName
+		NVARCHAR Email
+		NVARCHAR Phone
+		NVARCHAR AddressLine1
+		NVARCHAR AddressLine2
+		NVARCHAR City
+		INT StateID FK
+		NVARCHAR PostalCode
+	}
+	
+	ProductCategories {
+		INT CategoryID PK
+		NVARCHAR CategoryName
+	}
+	
+		Product {
+		INT ProductID PK
+		NVARCHAR ProductName
+		NVARCHAR Brand
+		NVARCHAR Specifications
+		INT CategoryID FK
+	}
 	
 	CustomerProductReview {
-        INT ReviewID PK
-        INT ProductID FK
-        INT CustomerID FK
-        INT Rating
-        NVARCHAR Review
-    }
+		INT ReviewID PK
+		INT ProductID FK
+		INT CustomerID FK
+		INT Rating
+		NVARCHAR Review
+	}
 	
 	CustomerSellerReview {
-        INT ReviewID PK
-        INT SellerID FK
-        INT CustomerID FK
-        INT Rating
-        NVARCHAR Review
-    }
-    
-    ProductQuality {
-        INT ProductQualityID PK
-        NVARCHAR QualityType
-    }
+		INT ReviewID PK
+		INT SellerID FK
+		INT CustomerID FK
+		INT Rating
+		NVARCHAR Review
+	}
+	
+	ProductQuality {
+		INT ProductQualityID PK
+		NVARCHAR QualityType
+	}
 	
 	Promotion {
-        INT PromotionID PK
-        NVARCHAR PromotionDescription
-        DECIMAL DiscountPercentage
-    }
+		INT PromotionID PK
+		NVARCHAR PromotionDescription
+		DECIMAL DiscountPercentage
+	}
 	
-    SellerProductPromotion {
-        INT PromotionProductID PK
-        INT SellerID FK
-        INT ProductID FK
-        INT ProductQualityID FK
-        DECIMAL Price
-        INT PromotionID FK
-    }
+	SellerProductPromotion {
+		INT PromotionProductID PK
+		INT SellerID FK
+		INT ProductID FK
+		INT ProductQualityID FK
+		DECIMAL Price
+		INT PromotionID FK
+	}
 	
-    Order {
-        INT OrderID PK
-        INT CustomerID FK
-        INT PromotionProductID FK
-        INT Quantity
-    }
+	Order {
+		INT OrderID PK
+		INT CustomerID FK
+		INT PromotionProductID FK
+		INT Quantity
+	}
 	
 	StateProvinceRolling }o--|| CountryRolling: "Resides in"
 	Customer }o--o| StateProvinceRolling: "Lives in"
@@ -232,12 +232,12 @@ erDiagram
 	SellerProductPromotion }o--o| ProductQuality: "Is of Quality"
 	SellerProductPromotion |o--o{ Promotion: "Includes"
 	Customer ||--o{ Order: "Places"
-    Order }o--|| SellerProductPromotion: "Contains"
+	Order }o--|| SellerProductPromotion: "Contains"
 ```
 
 Here's the output `ER Diagram` as visualized in ***DBeaver***:
 
-![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/ERDiagram.png)
+![](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_dbo_er_diagram_dbeaver.png)
 
 ### 2 — **HTTP API — GitHub Replication Setup**
 
