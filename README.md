@@ -230,7 +230,7 @@ erDiagram
 	Seller ||--o{ SellerProductPromotion: "Creates"
 	SellerProductPromotion }o--|| Product: "Has"
 	SellerProductPromotion }o--o| ProductQuality: "Is of Quality"
-	SellerProductPromotion |o--o{ Promotion: "Includes"
+	SellerProductPromotion }o--o| Promotion: "Includes"
 	Customer ||--o{ Order: "Places"
 	Order }o--|| SellerProductPromotion: "Contains"
 ```
