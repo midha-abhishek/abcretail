@@ -101,22 +101,22 @@ Here's what the sample code from the DDL looks like:
 
 ```sql
 CREATE TABLE Customer (
-   CustomerID INT IDENTITY(1,1) PRIMARY KEY,
-   FirstName NVARCHAR(50),
-   LastName NVARCHAR(50),
-   Email NVARCHAR(100),
-   Phone NVARCHAR(15),
-   AddressLine1 NVARCHAR(200),
-   AddressLine2 NVARCHAR(200),
-   City NVARCHAR(100),
-   StateID INT FOREIGN KEY REFERENCES StateProvinceRolling(StateID),
-   PostalCode NVARCHAR(20)
+	CustomerID INT IDENTITY(1,1) PRIMARY KEY,
+	FirstName NVARCHAR(50),
+	LastName NVARCHAR(50),
+	Email NVARCHAR(100),
+	Phone NVARCHAR(15),
+	AddressLine1 NVARCHAR(200),
+	AddressLine2 NVARCHAR(200),
+	City NVARCHAR(100),
+	StateID INT FOREIGN KEY REFERENCES StateProvinceRolling(StateID),
+	PostalCode NVARCHAR(20)
 );
 
 INSERT INTO Customer (FirstName, LastName, Email, Phone, AddressLine1, AddressLine2, City, StateID, PostalCode)
 VALUES
-   ('John', 'Doe', 'john.doe@example.com', '1234567890', '123 Main St', '', 'Toronto', 1, 'M5H 2N2'),
-   ('Jane', 'Smith', 'jane.smith@example.com', '9876543210', '456 Elm St', '', 'Los Angeles', 4, '90001');
+	('John', 'Doe', 'john.doe@example.com', '1234567890', '123 Main St', '', 'Toronto', 1, 'M5H 2N2'),
+	('Jane', 'Smith', 'jane.smith@example.com', '9876543210', '456 Elm St', '', 'Los Angeles', 4, '90001');
 
 SELECT * FROM Customer;
 ```
@@ -278,8 +278,8 @@ This is what a part of the JSON document looks like:
 
 ```json
 {
-    "source": "onprem_sqlserver",
-    "filename": "Seller"
+	"source": "onprem_sqlserver",
+	"filename": "Seller"
 },
 ```
 
@@ -373,8 +373,8 @@ Here's a sample of some of the advanced analyses performed:
 -- Top 5 Products by Total Sales Revenue
 
 SELECT TOP 5 p.Name AS ProductName, 
-    SUM(sod.LineTotal) AS TotalRevenue,
-    COUNT(DISTINCT soh.SalesOrderID) AS NumberOfSales
+	SUM(sod.LineTotal) AS TotalRevenue,
+	COUNT(DISTINCT soh.SalesOrderID) AS NumberOfSales
 FROM [azsqldb_Product] p
 JOIN [azsqldb_SalesOrderDetail] sod ON p.ProductID = sod.ProductID
 JOIN [azsqldb_SalesOrderHeader] soh ON sod.SalesOrderID = soh.SalesOrderID
@@ -387,16 +387,16 @@ ORDER BY TotalRevenue DESC;
 -- Year-Over-Year Sales Growth
 
 WITH SalesByYear AS (
-    SELECT YEAR(OrderDate) AS SalesYear, 
-        SUM(TotalDue) AS TotalSales
-    FROM [azsqldb_SalesOrderHeader]
-    WHERE OrderDate IS NOT NULL
-    GROUP BY YEAR(OrderDate)
+	SELECT YEAR(OrderDate) AS SalesYear, 
+		SUM(TotalDue) AS TotalSales
+	FROM [azsqldb_SalesOrderHeader]
+	WHERE OrderDate IS NOT NULL
+	GROUP BY YEAR(OrderDate)
 )
 SELECT SalesYear, 
-    TotalSales, 
-    LAG(TotalSales, 1) OVER (ORDER BY SalesYear) AS LastYearSales,
-    ((TotalSales - LAG(TotalSales, 1) OVER (ORDER BY SalesYear)) / LAG(TotalSales, 1) OVER (ORDER BY SalesYear)) * 100 AS SalesGrowthPercentage
+	TotalSales, 
+	LAG(TotalSales, 1) OVER (ORDER BY SalesYear) AS LastYearSales,
+	((TotalSales - LAG(TotalSales, 1) OVER (ORDER BY SalesYear)) / LAG(TotalSales, 1) OVER (ORDER BY SalesYear)) * 100 AS SalesGrowthPercentage
 FROM SalesByYear
 ORDER BY SalesYear;
 ```
