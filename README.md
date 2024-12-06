@@ -95,7 +95,7 @@ Using *`Transac-SQL (T-SQL)`* in the ***Azure Synapse Analytics***, a thorough a
 
 On ***Microsoft SQL Server***, a new sample database was created using ***Microsoft SQL Server Management Studio*** with `SQL Server Authentication` credentials.
 
-#### 1.1 — **DDL From the Normalized Database**
+#### 1.1 — **DDL FOR the Normalized Relational Database**
 
 The DDL could be found [here](https://raw.githubusercontent.com/midha-abhishek/abcretail/refs/heads/main/onprem_sql_server/onprem_abcretail_ddl.sql).
 
